@@ -4,7 +4,10 @@ export const defalutTheme = {
   'main-blue': '#3A9DF9',
   'bg-blue': '#EFF6FF',
   'slate-950': '#020617',
+  'slate-500': '#64748B',
+  'slate-400': '#64748B',
   'orange-500': '#F97316',
+
   'gray-100': '#E1E1E6',
   'gray-300': '#C4C4CC',
   'gray-400': '#8D8D99',
@@ -19,6 +22,9 @@ export const defalutTheme = {
 
   'gradient-green-100': '#059669',
   'gradient-green-200': '#10B981',
+
+  'gradient-orange-100': '#F59E0B',
+  'gradient-orange-200': '#F97316',
 
   'gradient-dark-100': '#27272A',
   'gradient-dark-200': '#09090B',

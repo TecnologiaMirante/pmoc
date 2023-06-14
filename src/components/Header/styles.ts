@@ -14,8 +14,6 @@ export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  background-color: red;
 `;
 
 export const ListItems = styled.ul`
@@ -23,7 +21,6 @@ export const ListItems = styled.ul`
   list-style: none;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
 
   li{
     margin-left: .5rem;
