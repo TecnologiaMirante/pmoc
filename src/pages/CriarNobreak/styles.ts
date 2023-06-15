@@ -18,6 +18,7 @@ export const FormsImage = styled.div`
   border-radius: 8px;
   margin-left: 30px;
   margin-top: 20px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 `;
 
 export const ContainerCadastro = styled.div`
