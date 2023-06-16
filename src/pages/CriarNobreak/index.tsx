@@ -1,99 +1,166 @@
 import { Header } from "../../components/Header";
 import { InputArea } from "../../components/Input";
 import {
-  ContainerCadastro,
-  ContainerFormLine,
-  ContainerFormVertical,
-  ContainerTitle,
-  FormsImage,
+  ContainerButton,
+  ContainerCard,
+  ContainerFilhoDoPai,
+  ContainerImage,
+  ContainerPai,
+  Forms,
+  FormsContainer,
+  FormsInline,
   Image,
   Subtitle,
-  Title,
 } from "./styles";
-import { useState } from "react";
 import quadrado from "../../assets/quadrado.png";
+import { useForm, Controller } from "react-hook-form";
+import { SaveButton } from "../../components/SaveButton";
+import { CancelButton } from "../../components/CancelButton/CancelButton";
+import { ErrorMessage } from "@hookform/error-message";
+
+type FormData = {
+  codigo: string;
+  marca: string;
+  status: string;
+  modelo: string;
+  tensao_entrada: number;
+  tensao_saida: number;
+};
 
 export function CriarNobreak() {
-  const [name, setName] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {},
+  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const onSubmit = async (data: any) => {
+    console.log(data);
   };
 
   return (
     <div>
       <Header />
-      <ContainerTitle>
-      <Title>Nobreak</Title>
-      </ContainerTitle>
-      <FormsImage>
-        <ContainerCadastro>
-          <ContainerFormLine>
-            <ContainerFormVertical>
-              <Subtitle>Código</Subtitle>
-              <InputArea
-                type="text"
-                placeholder="Digite o código"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
+      <ContainerPai>
+        <ContainerFilhoDoPai>
+          <ContainerCard>
+            <FormsContainer>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Código</Subtitle>
+                  <Controller
+                    control={control}
+                    name="codigo"
+                    rules={{ required: "Informe o código" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Digite o código"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Status</Subtitle>
+                  <Controller
+                    control={control}
+                    name="status"
+                    rules={{ required: "Informe o status" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Coloque o status"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Marca</Subtitle>
+                  <Controller
+                    control={control}
+                    name="marca"
+                    rules={{ required: "Informe a marca" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Digite a marca"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Modelo</Subtitle>
+                  <Controller
+                    control={control}
+                    name="modelo"
+                    rules={{ required: "Informe o modelo" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Digite o modelo"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Tensão entrada</Subtitle>
+                  <Controller
+                    control={control}
+                    name="tensao_entrada"
+                    rules={{ required: "Informe a tensão de entrada" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Tensão Saída</Subtitle>
+                  <Controller
+                    control={control}
+                    name="tensao_saida"
+                    rules={{ required: "Informe a tensão de saida" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="110"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+            </FormsContainer>
 
-            <ContainerFormVertical>
-              <Subtitle>Status</Subtitle>
-              <InputArea
-                type="text"
-                placeholder="Digite seu nome"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
-          </ContainerFormLine>
-
-          <ContainerFormLine>
-            <ContainerFormVertical>
-              <Subtitle>Marca</Subtitle>
-              <InputArea
-                type="text"
-                placeholder="Digite a marca"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
-
-            <ContainerFormVertical>
-              <Title>Modelo</Title>
-              <InputArea
-                type="text"
-                placeholder="Digite o modelo"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
-
-            <ContainerFormVertical>
-              <Title>Tensão entrada</Title>
-              <InputArea
-                type="number"
-                placeholder="220"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
-
-            <ContainerFormVertical>
-              <Title>Tensão Saída</Title>
-              <InputArea
-                type="number"
-                placeholder="110"
-                value={name}
-                onChange={handleChange}
-              />
-            </ContainerFormVertical>
-          </ContainerFormLine>
-        </ContainerCadastro>
-        <Image src={quadrado} alt="quadrado" />
-      </FormsImage>
+            <ContainerImage>
+              <Image src={quadrado} alt="quadrado" />
+            </ContainerImage>
+          </ContainerCard>
+          <ContainerButton>
+            <CancelButton />
+            <SaveButton onClick={handleSubmit(onSubmit)} />
+          </ContainerButton>
+        </ContainerFilhoDoPai>
+      </ContainerPai>
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import { ButtonContainer } from "./styles";
 
-export function SaveButton() {
+type SaveButtonProps = {
+  onClick: () => void;
+};
+
+export function SaveButton({ onClick }: SaveButtonProps) {
   return (
-    <ButtonContainer>
-      <button>
+    <ButtonContainer onClick={onClick}>
         Salvar equipamento
-      </button>
     </ButtonContainer>
   );
 }

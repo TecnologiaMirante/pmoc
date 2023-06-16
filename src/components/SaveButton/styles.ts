@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+export const ButtonContainer = styled.button`
     width: 150px;
     height: 40px;
 
-    button {
+
       margin-top: 10px;
       margin-left: 10px;
       width: 150px;
@@ -25,6 +25,5 @@ export const ButtonContainer = styled.div`
       &:hover{
         color: ${props => props.theme['white']};
         background: linear-gradient(to left, ${props => props.theme['gradient-blue-100']} 0%,  ${props => props.theme['gradient-blue-200']} 100%);
-      }
-}  
+      } 
 `;

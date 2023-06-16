@@ -8,6 +8,7 @@ export const defalutTheme = {
   'slate-400': '#64748B',
   'orange-500': '#F97316',
 
+  'gray-50': '#A5A5A5',
   'gray-100': '#E1E1E6',
   'gray-300': '#C4C4CC',
   'gray-400': '#8D8D99',
@@ -17,7 +18,11 @@ export const defalutTheme = {
   'gray-800': '#202024',
   'gray-900': '#121214',
 
+  'red-500': '#bf1650',
+
   'gradient-blue-100': '#3A9DF9',
+
+
   'gradient-blue-200': '#4839F9',
 
   'gradient-green-100': '#059669',
@@ -28,4 +33,5 @@ export const defalutTheme = {
 
   'gradient-dark-100': '#27272A',
   'gradient-dark-200': '#09090B',
+
 } as const

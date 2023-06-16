@@ -6,4 +6,11 @@ export const Input = styled.input`
     width: 183px;
     border-width: 0px;
     padding-left: 10px;
+    border-radius: 4px;
+
+    &::placeholder {
+      font-size: 14px;
+      font-size: 'Lato',sans-serif;
+      color: ${(props) => props.theme["gray-50"]};
+    }
 `;

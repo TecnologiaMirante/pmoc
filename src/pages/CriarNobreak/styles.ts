@@ -1,63 +1,92 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
+
+export const ContainerPai = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding-top: 36px;
+  flex-direction: column;
+  background-color: ${(props) => props.theme["bg-blue"]};
+`;
+
+export const ContainerFilhoDoPai = styled.div`
+  width: 100%;
+  display: flex;
+  padding-top: 36px;
+  flex-direction: column;
+  padding: 0px 36px;
+  position: absolute;
+  background-color: ${(props) => props.theme["bg-blue"]};
+`;
 
 export const ContainerCard = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const FormsImage = styled.div`
-  display: flex;
-  flex-direction: row;
-  max-width: 1250px;
-  min-width: 500px;
+  width: 100%;
   height: 230px;
+  margin: 0 auto;
+  display: flex;
   background-color: ${(props) => props.theme["white"]};
-  justify-content: space-around;
-  align-items: center;
+  box-shadow: 0px 5px 40px -5px rgba(58, 157, 249, 0.3);
   border-radius: 8px;
-  margin-left: 30px;
-  margin-top: 20px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  padding-right: 36px;
+  @media (max-width: 890px) {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
 `;
 
-export const ContainerCadastro = styled.div`
-  display: flex;
+export const Forms = styled.div`
   flex-direction: column;
-  padding: 30px;
+  margin-bottom: 15px;
 `;
 
-export const ContainerFormVertical = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 7%;
-`;
-
-export const ContainerFormLine = styled.div`
+export const FormsInline = styled.div`
   flex-direction: row;
-  display: flex;
-  margin-bottom: 30px;
-`;
+  padding-top: 32px;
+  padding-left: 36px;
 
-export const Title = styled.p`
-  color: ${(props) => props.theme["gradient-blue-100"]};
-  font-weight: 700;
+  @media (max-width: 890px) {
+    flex-direction: column;
+    height: auto;
+    padding-right: 0;
+  }
 `;
 
 export const Subtitle = styled.p`
   color: ${(props) => props.theme["gradient-blue-100"]};
   font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-family: "Lato", sans-serif;
+`;
+
+export const FormsContainer = styled.div`
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+`;
+
+export const ContainerImage = styled.div`
+ align-items: center;
+ justify-content: center;
 `;
 
 export const Image = styled.img`
   width: 184px;
   height: 120px;
   border-radius: 8px;
-  margin-top: -20px;
+  margin-top: 50px;
+  margin-bottom: 10px;
 `;
 
-export const ContainerTitle = styled.div`
-    display: flex;
-    margin-top: 70px;
-    margin-left: 30px;
+export const ContainerButton = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  top: 100%; /* Ajuste a altura desejada */
+  right: 0;
+  margin-top:30px; /* Ajuste a distância da borda direita */
+  transform: translateY(-50%);
 `;
