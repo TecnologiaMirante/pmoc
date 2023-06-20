@@ -19,12 +19,14 @@ import { useForm, Controller, FormState } from "react-hook-form";
 import { SaveButton } from "../../components/SaveButton";
 import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
+import { Dropdown } from "../../components/DropDown";
+import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
+  status: string;
 };
 
 export function CriarExaustor() {
@@ -95,6 +97,21 @@ export function CriarExaustor() {
                       <InputArea
                         type="text"
                         placeholder="Digite o modelo"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                <Subtitle>Status</Subtitle>
+                  <Controller
+                    control={control}
+                    name="status"
+                    rules={{ required: "Selecione o status" }}
+                    render={({ field: { onChange, value } }) => (
+                      <Dropdown
+                        options={EquipmentsStatusList}
                         value={value}
                         onChange={onChange}
                       />

@@ -1,20 +1,23 @@
+import { EquipmentStatus } from "../../dtos/EquipamentoStatusDTO";
 import { Select } from "./styles";
 
-
-type Props = {
-  value:string;
-  title:string
+interface DropdownProps {
+  options: EquipmentStatus[];
+  value: string;
+  onChange: (value: string) => void;
 }
 
-export function Dropdown() {
+export function Dropdown({ options, value, onChange }: DropdownProps) {
   return (
     <label>
-    <Select name="Status">
-      <option value="">--</option>
-      <option value="apple">Apple</option>
-      <option value="banana">Banana</option>
-      <option value="orange">Orange</option>
-    </Select>
+      <Select name="Status" value={value} onChange={(e) => onChange(e.target.value)}>
+        <option value="">--</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.title}
+          </option>
+        ))}
+      </Select>
     </label>
   );
 }

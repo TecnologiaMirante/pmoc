@@ -19,6 +19,8 @@ import { useForm, Controller, FormState } from "react-hook-form";
 import { SaveButton } from "../../components/SaveButton";
 import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
+import { Dropdown } from "../../components/DropDown";
+import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 
 type FormData = {
   codigo: string;
@@ -70,15 +72,14 @@ export function CriarSwitch() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Status</Subtitle>
+                <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
-                    rules={{ required: "Informe o status" }}
+                    rules={{ required: "Selecione o status" }}
                     render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Coloque o status"
+                      <Dropdown
+                        options={EquipmentsStatusList}
                         value={value}
                         onChange={onChange}
                       />

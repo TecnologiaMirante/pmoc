@@ -19,6 +19,10 @@ import { useForm, Controller, FormState } from "react-hook-form";
 import { SaveButton } from "../../components/SaveButton";
 import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
+import { Dropdown } from "../../components/DropDown";
+import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { TipoAntenaList } from "../../dtos/TipoAntenaDTO";
+
 
 type FormData = {
   codigo: string;
@@ -78,11 +82,10 @@ export function CriarAntena() {
                   <Controller
                     control={control}
                     name="status"
-                    rules={{ required: "Informe o status" }}
+                    rules={{ required: "Selecione o status" }}
                     render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Coloque o status"
+                      <Dropdown
+                        options={EquipmentsStatusList}
                         value={value}
                         onChange={onChange}
                       />
@@ -167,11 +170,10 @@ export function CriarAntena() {
                   <Controller
                     control={control}
                     name="tipo"
-                    rules={{ required: "Informe o tipo da antena" }}
+                    rules={{ required: "Selecione o tipo" }}
                     render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Tipo oni"
+                      <Dropdown
+                        options={TipoAntenaList}
                         value={value}
                         onChange={onChange}
                       />
@@ -214,7 +216,7 @@ export function CriarAntena() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Category</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
