@@ -23,13 +23,17 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  gain: string;
+  fendas: number;
+  tipo: string;
+  vr: string;
+  posicao_torre:string
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarAntena() {
   const {
     control,
     handleSubmit,
@@ -46,7 +50,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Antena</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -120,17 +124,18 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
+
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Gain</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="gain"
+                    rules={{ required: "Informe o gain" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="220"
+                        type="text"
+                        placeholder="Digite o tipo"
                         value={value}
                         onChange={onChange}
                       />
@@ -138,15 +143,86 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Fendas</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="fendas"
+                    rules={{ required: "Informe a fenda" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
-                        placeholder="110"
+                        placeholder="Digite a altura da torre"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Tipo</Subtitle>
+                  <Controller
+                    control={control}
+                    name="tipo"
+                    rules={{ required: "Informe o tipo da antena" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Tipo oni"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>VR</Subtitle>
+                  <Controller
+                    control={control}
+                    name="vr"
+                    rules={{ required: "Informe o VR" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="VR XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Posição torre</Subtitle>
+                  <Controller
+                    control={control}
+                    name="posicao_torre"
+                    rules={{ required: "Informe a posição da torre" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="230"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Category</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -155,7 +231,6 @@ export function CriarNobreak() {
                 </Forms>
               </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

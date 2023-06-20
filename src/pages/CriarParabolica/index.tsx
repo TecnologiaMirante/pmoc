@@ -23,13 +23,15 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  diametro: number;
+  satelite: string;
+  receptor: string;
+  category: string
 };
 
-export function CriarNobreak() {
+export function CriarParabolica() {
   const {
     control,
     handleSubmit,
@@ -46,7 +48,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Parabólica</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,11 +124,11 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Diametro</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="diametro"
+                    rules={{ required: "Informe o diametro" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
@@ -138,15 +140,15 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Satélite</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="satelite"
+                    rules={{ required: "Informe o satélite" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="110"
+                        type="text"
+                        placeholder="Sat. AAA"
                         value={value}
                         onChange={onChange}
                       />
@@ -154,8 +156,43 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
-            </FormsContainer>
 
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Receptor</Subtitle>
+                  <Controller
+                    control={control}
+                    name="receptor"
+                    rules={{ required: "Informe o receptor" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+            </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

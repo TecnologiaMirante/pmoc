@@ -25,11 +25,10 @@ type FormData = {
   marca: string;
   status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  corrente_maxima: number;
 };
 
-export function CriarNobreak() {
+export function CriarTelemetria() {
   const {
     control,
     handleSubmit,
@@ -46,7 +45,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Telemetria</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -70,25 +69,7 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Status</Subtitle>
-                  <Controller
-                    control={control}
-                    name="status"
-                    rules={{ required: "Informe o status" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Coloque o status"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+                <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -103,6 +84,8 @@ export function CriarNobreak() {
                     )}
                   />
                 </Forms>
+              </FormsInline>
+              <FormsInline>
                 <Forms>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
@@ -120,42 +103,7 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
-                  <Controller
-                    control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
-                  <Controller
-                    control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="110"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-              </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

@@ -23,13 +23,15 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  tipo_estrutura: string;
+  altura: number;
+  aterramento: boolean;
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarTorre() {
   const {
     control,
     handleSubmit,
@@ -46,7 +48,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Torre</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -120,17 +122,18 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
+
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Tipo da estrutura</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="tipo_estrutura"
+                    rules={{ required: "Informe o tipo da estrutura" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="220"
+                        type="text"
+                        placeholder="Digite o tipo"
                         value={value}
                         onChange={onChange}
                       />
@@ -138,15 +141,51 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Altura</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="altura"
+                    rules={{ required: "Informe a altura" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
-                        placeholder="110"
+                        placeholder="Digite a altura da torre"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Aterramento</Subtitle>
+                  <Controller
+                    control={control}
+                    name="aterramento"
+                    rules={{ required: "Informe se existe aterramento" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="string"
+                        placeholder="Sim"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -155,7 +194,6 @@ export function CriarNobreak() {
                 </Forms>
               </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

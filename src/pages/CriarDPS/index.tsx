@@ -25,11 +25,10 @@ type FormData = {
   marca: string;
   status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  corrente_maxima: number;
 };
 
-export function CriarNobreak() {
+export function CriarDPS() {
   const {
     control,
     handleSubmit,
@@ -46,7 +45,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>DPS</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,11 +121,11 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Corrente máxima</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="corrente_maxima"
+                    rules={{ required: "Informe a corrente" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
@@ -137,25 +136,8 @@ export function CriarNobreak() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
-                  <Controller
-                    control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="110"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

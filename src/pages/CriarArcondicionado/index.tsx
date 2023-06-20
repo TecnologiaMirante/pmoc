@@ -23,13 +23,13 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  potencia: number;
+  tensao: number;
 };
 
-export function CriarNobreak() {
+export function CriarArcondicionado() {
   const {
     control,
     handleSubmit,
@@ -46,7 +46,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Ar-condicionado</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,11 +122,11 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Potência</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="potencia"
+                    rules={{ required: "Informe a potência" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
@@ -138,11 +138,11 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Tensão</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="tensao"
+                    rules={{ required: "Informe a tensão do equipamento" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"

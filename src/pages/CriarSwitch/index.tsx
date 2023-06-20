@@ -25,11 +25,11 @@ type FormData = {
   marca: string;
   status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  quantidade_portas: number;
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarSwitch() {
   const {
     control,
     handleSubmit,
@@ -46,7 +46,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Switch</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,10 +122,10 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Quantidade de portas</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
+                    name="quantidade_portas"
                     rules={{ required: "Informe a tensão de entrada" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -138,15 +138,15 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
+                    name="category"
                     rules={{ required: "Informe a tensão de saida" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="110"
+                        type="text"
+                        placeholder="sdasd"
                         value={value}
                         onChange={onChange}
                       />

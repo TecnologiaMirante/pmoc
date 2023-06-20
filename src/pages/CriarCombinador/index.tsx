@@ -23,13 +23,12 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarCombinador() {
   const {
     control,
     handleSubmit,
@@ -46,7 +45,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Combinador</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,31 +121,15 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
-                  <Controller
-                    control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="110"
+                        type="text"
+                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -155,7 +138,6 @@ export function CriarNobreak() {
                 </Forms>
               </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

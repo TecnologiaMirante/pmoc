@@ -23,13 +23,17 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  programmed_power: number;
+  canal_fisico: number;
+  canal_virtual: number;
+  receptor: string;
+  antena: string;
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarTransmissor() {
   const {
     control,
     handleSubmit,
@@ -46,7 +50,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Transmissor</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -122,11 +126,11 @@ export function CriarNobreak() {
               </FormsInline>
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Programmed power</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="programmed_power"
+                    rules={{ required: "Informe o Programmed power" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
@@ -138,15 +142,15 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Canal físico</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="canal_fisico"
+                    rules={{ required: "Informe o canal físico" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
-                        placeholder="110"
+                        placeholder="2131Ghz"
                         value={value}
                         onChange={onChange}
                       />
@@ -154,8 +158,78 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
-            </FormsContainer>
 
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Canal virtual</Subtitle>
+                  <Controller
+                    control={control}
+                    name="canal_virtual"
+                    rules={{ required: "Informe o canal virtual" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Receptor</Subtitle>
+                  <Controller
+                    control={control}
+                    name="receptor"
+                    rules={{ required: "Informe o receptor" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Receptor AAA"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Antena</Subtitle>
+                  <Controller
+                    control={control}
+                    name="antena"
+                    rules={{ required: "Informe a antena" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Antena XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+            </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

@@ -23,13 +23,14 @@ import { ErrorMessage } from "@hookform/error-message";
 type FormData = {
   codigo: string;
   marca: string;
-  status: string;
   modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
+  status: string;
+  tipo: string;
+  tamanho: number;
+  category: string;
 };
 
-export function CriarNobreak() {
+export function CriarCabo() {
   const {
     control,
     handleSubmit,
@@ -46,7 +47,7 @@ export function CriarNobreak() {
     <div>
       <Header />
       <ContainerTitle>
-        <Title>Nobreak</Title>
+        <Title>Cabo</Title>
       </ContainerTitle>
       <ContainerPai>
         <ContainerFilhoDoPai>
@@ -120,17 +121,18 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
+
               <FormsInline>
                 <Forms>
-                  <Subtitle>Tensão entrada</Subtitle>
+                  <Subtitle>Tipo</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_entrada"
-                    rules={{ required: "Informe a tensão de entrada" }}
+                    name="tipo"
+                    rules={{ required: "Informe o tipo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="220"
+                        type="text"
+                        placeholder="Digite o tipo"
                         value={value}
                         onChange={onChange}
                       />
@@ -138,15 +140,35 @@ export function CriarNobreak() {
                   />
                 </Forms>
                 <Forms>
-                  <Subtitle>Tensão Saída</Subtitle>
+                  <Subtitle>Tamanho</Subtitle>
                   <Controller
                     control={control}
-                    name="tensao_saida"
-                    rules={{ required: "Informe a tensão de saida" }}
+                    name="tamanho"
+                    rules={{ required: "Informe o tamanho" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
-                        type="number"
-                        placeholder="110"
+                        type="text"
+                        placeholder="Digite o modelo"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -155,7 +177,6 @@ export function CriarNobreak() {
                 </Forms>
               </FormsInline>
             </FormsContainer>
-
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>

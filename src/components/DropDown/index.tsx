@@ -1,5 +1,11 @@
 import { Select } from "./styles";
 
+
+type Props = {
+  value:string;
+  title:string
+}
+
 export function Dropdown() {
   return (
     <label>
