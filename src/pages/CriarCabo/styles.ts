@@ -2,11 +2,12 @@ import { css, styled } from "styled-components";
 
 export const ContainerPai = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
   padding-top: 36px;
   flex-direction: column;
   background-color: ${(props) => props.theme["bg-blue"]};
+  overflow: hidden;
 `;
 
 export const ContainerTitle = styled.div`

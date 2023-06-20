@@ -217,7 +217,7 @@ export function CriarAntena() {
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="number"
-                        placeholder="Digite a altura da torre"
+                        placeholder="123"
                         value={value}
                         onChange={onChange}
                       />

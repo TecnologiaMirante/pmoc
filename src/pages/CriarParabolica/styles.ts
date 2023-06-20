@@ -1,8 +1,11 @@
 import { css, styled } from "styled-components";
 
+export const Corpo = styled.body`
+  overflow: hidden;
+`;
+
 export const ContainerPai = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
   padding-top: 36px;
   flex-direction: column;
@@ -48,6 +51,7 @@ export const ContainerCard = styled.div`
     align-items: center;
     height: auto;
   }
+
 `;
 
 export const Forms = styled.div`

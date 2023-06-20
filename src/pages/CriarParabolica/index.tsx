@@ -7,6 +7,7 @@ import {
   ContainerImage,
   ContainerPai,
   ContainerTitle,
+  Corpo,
   Forms,
   FormsContainer,
   FormsInline,
@@ -47,7 +48,7 @@ export function CriarParabolica() {
   };
 
   return (
-    <div>
+    <Corpo>
       <Header />
       <ContainerTitle>
         <Title>Parabólica</Title>
@@ -200,6 +201,6 @@ export function CriarParabolica() {
           </ContainerButton>
         </ContainerFilhoDoPai>
       </ContainerPai>
-    </div>
+    </Corpo>
   );
 }
