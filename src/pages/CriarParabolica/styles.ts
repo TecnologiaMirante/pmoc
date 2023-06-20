@@ -35,7 +35,7 @@ export const ContainerFilhoDoPai = styled.div`
 
 export const ContainerCard = styled.div`
   width: 100%;
-  height: 380px;
+  height: 300px;
   margin: 0 auto;
   display: flex;
   background-color: ${(props) => props.theme["white"]};

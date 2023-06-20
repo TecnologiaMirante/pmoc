@@ -74,7 +74,7 @@ export function CriarTorre() {
                   />
                 </Forms>
                 <Forms>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -82,6 +82,22 @@ export function CriarTorre() {
                     render={({ field: { onChange, value } }) => (
                       <Dropdown
                         options={EquipmentsStatusList}
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Aterramento</Subtitle>
+                  <Controller
+                    control={control}
+                    name="aterramento"
+                    rules={{ required: "Informe se existe aterramento" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="string"
+                        placeholder="Sim"
                         value={value}
                         onChange={onChange}
                       />
@@ -122,6 +138,22 @@ export function CriarTorre() {
                     )}
                   />
                 </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
               </FormsInline>
 
               <FormsInline>
@@ -151,42 +183,6 @@ export function CriarTorre() {
                       <InputArea
                         type="number"
                         placeholder="Digite a altura da torre"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-              </FormsInline>
-
-
-              <FormsInline>
-              <Forms>
-                  <Subtitle>Aterramento</Subtitle>
-                  <Controller
-                    control={control}
-                    name="aterramento"
-                    rules={{ required: "Informe se existe aterramento" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="string"
-                        placeholder="Sim"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />

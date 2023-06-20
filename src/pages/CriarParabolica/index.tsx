@@ -30,7 +30,7 @@ type FormData = {
   diametro: number;
   satelite: string;
   receptor: string;
-  category: string
+  category: string;
 };
 
 export function CriarParabolica() {
@@ -74,7 +74,7 @@ export function CriarParabolica() {
                   />
                 </Forms>
                 <Forms>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -82,6 +82,22 @@ export function CriarParabolica() {
                     render={({ field: { onChange, value } }) => (
                       <Dropdown
                         options={EquipmentsStatusList}
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Receptor</Subtitle>
+                  <Controller
+                    control={control}
+                    name="receptor"
+                    rules={{ required: "Informe o receptor" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
                         value={value}
                         onChange={onChange}
                       />
@@ -116,6 +132,22 @@ export function CriarParabolica() {
                       <InputArea
                         type="text"
                         placeholder="Digite o modelo"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
                         value={value}
                         onChange={onChange}
                       />
@@ -157,42 +189,6 @@ export function CriarParabolica() {
                   />
                 </Forms>
               </FormsInline>
-
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
-                  <Controller
-                    control={control}
-                    name="receptor"
-                    rules={{ required: "Informe o receptor" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria X"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-              </FormsInline>
-
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />

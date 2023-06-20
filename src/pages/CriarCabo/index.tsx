@@ -21,6 +21,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { Dropdown } from "../../components/DropDown";
+import { TipoCaboList } from "../../dtos/TipoCaboDTO";
 
 type FormData = {
   codigo: string;
@@ -87,6 +88,22 @@ export function CriarCabo() {
                     )}
                   />
                 </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -129,11 +146,10 @@ export function CriarCabo() {
                   <Controller
                     control={control}
                     name="tipo"
-                    rules={{ required: "Informe o tipo" }}
+                    rules={{ required: "Selecione o tipo" }}
                     render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Digite o tipo"
+                      <Dropdown
+                        options={TipoCaboList}
                         value={value}
                         onChange={onChange}
                       />
@@ -159,24 +175,7 @@ export function CriarCabo() {
               </FormsInline>
 
 
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria XX"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-              </FormsInline>
+
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
