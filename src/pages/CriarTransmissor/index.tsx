@@ -90,38 +90,6 @@ export function CriarTransmissor() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Canal virtual</Subtitle>
-                  <Controller
-                    control={control}
-                    name="canal_virtual"
-                    rules={{ required: "Informe o canal virtual" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria X"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -156,23 +124,6 @@ export function CriarTransmissor() {
                     )}
                   />
                 </Forms>
-
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
-                  <Controller
-                    control={control}
-                    name="receptor"
-                    rules={{ required: "Informe o receptor" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Receptor AAA"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -191,6 +142,42 @@ export function CriarTransmissor() {
                     )}
                   />
                 </Forms>
+
+                <Forms>
+                  <Subtitle>Antena</Subtitle>
+                  <Controller
+                    control={control}
+                    name="antena"
+                    rules={{ required: "Informe a antena" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Antena XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Canal virtual</Subtitle>
+                  <Controller
+                    control={control}
+                    name="canal_virtual"
+                    rules={{ required: "Informe o canal virtual" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+
                 <Forms>
                   <Subtitle>Canal físico</Subtitle>
                   <Controller
@@ -207,16 +194,35 @@ export function CriarTransmissor() {
                     )}
                   />
                 </Forms>
+              </FormsInline>
+              <FormsInline>
                 <Forms>
-                  <Subtitle>Antena</Subtitle>
+                  <Subtitle>Receptor</Subtitle>
                   <Controller
                     control={control}
-                    name="antena"
-                    rules={{ required: "Informe a antena" }}
+                    name="receptor"
+                    rules={{ required: "Informe o receptor" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
                         type="text"
-                        placeholder="Antena XX"
+                        placeholder="Receptor AAA"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
                         value={value}
                         onChange={onChange}
                       />

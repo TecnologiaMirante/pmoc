@@ -90,38 +90,6 @@ export function CriarReceptor() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Symbol rate</Subtitle>
-                  <Controller
-                    control={control}
-                    name="symbol_rate"
-                    rules={{ required: "Informe o symbol rate" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria X"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -150,22 +118,6 @@ export function CriarReceptor() {
                       <InputArea
                         type="text"
                         placeholder="Digite o modelo"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Transmissor</Subtitle>
-                  <Controller
-                    control={control}
-                    name="transmissor"
-                    rules={{ required: "Informe o transmissor" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="transmissor AAA"
                         value={value}
                         onChange={onChange}
                       />
@@ -206,6 +158,26 @@ export function CriarReceptor() {
                     )}
                   />
                 </Forms>
+              </FormsInline>
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Transmissor</Subtitle>
+                  <Controller
+                    control={control}
+                    name="transmissor"
+                    rules={{ required: "Informe o transmissor" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="transmissor AAA"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+
                 <Forms>
                   <Subtitle>Parabólica</Subtitle>
                   <Controller
@@ -216,6 +188,42 @@ export function CriarReceptor() {
                       <InputArea
                         type="text"
                         placeholder="Parabólica XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Symbol rate</Subtitle>
+                  <Controller
+                    control={control}
+                    name="symbol_rate"
+                    rules={{ required: "Informe o symbol rate" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
                         value={value}
                         onChange={onChange}
                       />

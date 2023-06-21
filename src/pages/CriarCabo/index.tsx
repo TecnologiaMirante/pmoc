@@ -74,7 +74,7 @@ export function CriarCabo() {
                   />
                 </Forms>
                 <Forms>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -82,22 +82,6 @@ export function CriarCabo() {
                     render={({ field: { onChange, value } }) => (
                       <Dropdown
                         options={EquipmentsStatusList}
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -174,8 +158,24 @@ export function CriarCabo() {
                 </Forms>
               </FormsInline>
 
-
-
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />

@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   background: linear-gradient(to right, ${props => props.theme['gradient-blue-100']} 0%,  ${props => props.theme['gradient-blue-200']} 100%);
   padding: .8rem 0 .8rem;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 999999;
 `;
 
 export const HeaderContent = styled.div`

@@ -1,9 +1,5 @@
 import { css, styled } from "styled-components";
 
-export const Corpo = styled.body`
-  overflow: hidden;
-`;
-
 export const ContainerPai = styled.div`
   width: 100%;
   display: flex;
@@ -16,11 +12,11 @@ export const ContainerTitle = styled.div`
   display: flex;
   background-color: aliceblue;
   margin-left: 40px;
-  margin-top: 50px;
+  margin-top: 100px;
 `;
 
 export const Title = styled.h2`
-  color: ${(props) => props.theme["gradient-blue-100"]};;
+  color: ${(props) => props.theme["gradient-blue-100"]};
   font-family: "Lato", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -38,20 +34,19 @@ export const ContainerFilhoDoPai = styled.div`
 
 export const ContainerCard = styled.div`
   width: 100%;
-  height: 300px;
-  margin: 0 auto;
+  height: auto; /* Altere a altura para 'auto' para que o conteúdo se ajuste dinamicamente */
+  margin: 0;
   display: flex;
+  flex-direction: row;
   background-color: ${(props) => props.theme["white"]};
   box-shadow: 0px 5px 40px -5px rgba(58, 157, 249, 0.3);
   border-radius: 8px;
   justify-content: space-between;
   padding-right: 36px;
-  @media (max-width: 970px) {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
 
+  @media (max-width: 560px) {
+    flex-direction:column; 
+  }
 `;
 
 export const Forms = styled.div`
@@ -61,7 +56,6 @@ export const Forms = styled.div`
 
 export const FormsInline = styled.div`
   flex-direction: row;
-  padding-top: 32px;
   padding-left: 36px;
 
   @media (max-width: 890px) {
@@ -83,18 +77,26 @@ export const FormsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
+  align-items: center;
+  margin-top: 30px;
+  height: auto; /* Altere a altura para 'auto' para que o conteúdo se ajuste dinamicamente */
 `;
 
 export const ContainerImage = styled.div`
- align-items: center;
- justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adicione um espaçamento entre os inputs e a imagem */
+
+  @media (max-width: 890px) {
+    margin-top: 65px; /* Ajuste o espaçamento para telas menores */
+  }
 `;
 
 export const Image = styled.img`
   width: 184px;
   height: 120px;
   border-radius: 8px;
-  margin-top: 50px;
   margin-bottom: 10px;
 `;
 
@@ -105,6 +107,6 @@ export const ContainerButton = styled.div`
   justify-content: flex-end;
   top: 100%; /* Ajuste a altura desejada */
   right: 0;
-  margin-top:30px; /* Ajuste a distância da borda direita */
+  margin-top: 30px; /* Ajuste a distância da borda direita */
   transform: translateY(-50%);
 `;

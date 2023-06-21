@@ -7,7 +7,6 @@ import {
   ContainerImage,
   ContainerPai,
   ContainerTitle,
-  Corpo,
   Forms,
   FormsContainer,
   FormsInline,
@@ -48,7 +47,7 @@ export function CriarParabolica() {
   };
 
   return (
-    <Corpo>
+    <>
       <Header />
       <ContainerTitle>
         <Title>Parabólica</Title>
@@ -89,22 +88,6 @@ export function CriarParabolica() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
-                  <Controller
-                    control={control}
-                    name="receptor"
-                    rules={{ required: "Informe o receptor" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="220"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -133,22 +116,6 @@ export function CriarParabolica() {
                       <InputArea
                         type="text"
                         placeholder="Digite o modelo"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria X"
                         value={value}
                         onChange={onChange}
                       />
@@ -190,7 +157,42 @@ export function CriarParabolica() {
                   />
                 </Forms>
               </FormsInline>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Receptor</Subtitle>
+                  <Controller
+                    control={control}
+                    name="receptor"
+                    rules={{ required: "Informe o receptor" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="220"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria X"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
+
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>
@@ -201,6 +203,6 @@ export function CriarParabolica() {
           </ContainerButton>
         </ContainerFilhoDoPai>
       </ContainerPai>
-    </Corpo>
+    </>
   );
 }

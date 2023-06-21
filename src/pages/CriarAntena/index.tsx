@@ -50,7 +50,7 @@ export function CriarAntena() {
   };
 
   return (
-    <div>
+    <>
       <Header />
       <ContainerTitle>
         <Title>Antena</Title>
@@ -91,37 +91,6 @@ export function CriarAntena() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Tipo</Subtitle>
-                  <Controller
-                    control={control}
-                    name="tipo"
-                    rules={{ required: "Selecione o tipo" }}
-                    render={({ field: { onChange, value } }) => (
-                      <Dropdown
-                        options={TipoAntenaList}
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>VR</Subtitle>
-                  <Controller
-                    control={control}
-                    name="vr"
-                    rules={{ required: "Informe o VR" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="VR XX"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -150,39 +119,6 @@ export function CriarAntena() {
                       <InputArea
                         type="text"
                         placeholder="Digite o modelo"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Posição torre</Subtitle>
-                  <Controller
-                    control={control}
-                    name="posicao_torre"
-                    rules={{ required: "Informe a posição da torre" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="number"
-                        placeholder="230"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria XX"
                         value={value}
                         onChange={onChange}
                       />
@@ -226,7 +162,74 @@ export function CriarAntena() {
                 </Forms>
               </FormsInline>
 
-              <FormsInline></FormsInline>
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Tipo</Subtitle>
+                  <Controller
+                    control={control}
+                    name="tipo"
+                    rules={{ required: "Selecione o tipo" }}
+                    render={({ field: { onChange, value } }) => (
+                      <Dropdown
+                        options={TipoAntenaList}
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>VR</Subtitle>
+                  <Controller
+                    control={control}
+                    name="vr"
+                    rules={{ required: "Informe o VR" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="VR XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Posição torre</Subtitle>
+                  <Controller
+                    control={control}
+                    name="posicao_torre"
+                    rules={{ required: "Informe a posição da torre" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="number"
+                        placeholder="230"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Categoria XX"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
@@ -238,6 +241,6 @@ export function CriarAntena() {
           </ContainerButton>
         </ContainerFilhoDoPai>
       </ContainerPai>
-    </div>
+    </>
   );
 }
