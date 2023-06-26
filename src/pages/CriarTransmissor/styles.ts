@@ -16,7 +16,7 @@ export const ContainerTitle = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${(props) => props.theme["gradient-blue-100"]};
+  color: ${(props) => props.theme["text-color"]};
   font-family: "Lato", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -66,7 +66,7 @@ export const FormsInline = styled.div`
 `;
 
 export const Subtitle = styled.p`
-  color: ${(props) => props.theme["gradient-blue-100"]};
+  color: ${(props) => props.theme["text-color"]};
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 8px;

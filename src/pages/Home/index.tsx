@@ -1,4 +1,5 @@
 import { CancelButton } from "../../components/CancelButton/CancelButton";
+import { CardAtivo } from "../../components/CardAtivo";
 import { CardEquipamento } from "../../components/CardEquipamento";
 import { CardEstacao } from "../../components/CardEstacao";
 import { CardEstacaoInfo } from "../../components/CardEstacaoInfo";
@@ -13,19 +14,12 @@ export function Home() {
   return (
     <div>
       <Header />
-      <SaveButton onClick={() => console.log('clicou')}/>
-      <DeleteButton/>
-      <CancelButton/>
-      <CardEstacao />
-      <CardEstacaoInfo />
-      <div style={{marginTop:20, marginLeft:20, marginBottom:20}}>
-      <CardEquipamento />
+      <div style={{marginTop:150}}>
+
+      <CardAtivo />
       </div>
 
 
-      <div style={{marginBottom:20, marginTop:20}}>
-        <Dropdown />
-      </div>
 
     </div>
   )

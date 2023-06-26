@@ -29,6 +29,7 @@ type FormData = {
   modelo: string;
   tensao_entrada: number;
   tensao_saida: number;
+  category: string;
 };
 
 export function CriarNobreak() {
@@ -37,7 +38,9 @@ export function CriarNobreak() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Elétrica"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -155,6 +158,23 @@ export function CriarNobreak() {
                   />
                 </Forms>
               </FormsInline>
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Elétrica"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
 
             <ContainerImage>
@@ -162,7 +182,7 @@ export function CriarNobreak() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

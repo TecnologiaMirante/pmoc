@@ -39,7 +39,9 @@ export function CriarParabolica() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Irradiação"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -180,12 +182,11 @@ export function CriarParabolica() {
                     control={control}
                     name="category"
                     rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { value } }) => (
                       <InputArea
                         type="text"
-                        placeholder="Categoria X"
+                        placeholder="Irradição"
                         value={value}
-                        onChange={onChange}
                       />
                     )}
                   />
@@ -198,7 +199,7 @@ export function CriarParabolica() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

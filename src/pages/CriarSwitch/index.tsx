@@ -37,7 +37,9 @@ export function CriarSwitch() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Telemetria"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -144,12 +146,11 @@ export function CriarSwitch() {
                     control={control}
                     name="category"
                     rules={{ required: "Informe a tensão de saida" }}
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { value } }) => (
                       <InputArea
                         type="text"
                         placeholder="sdasd"
                         value={value}
-                        onChange={onChange}
                       />
                     )}
                   />
@@ -162,7 +163,7 @@ export function CriarSwitch() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

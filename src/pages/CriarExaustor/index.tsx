@@ -27,6 +27,7 @@ type FormData = {
   marca: string;
   modelo: string;
   status: string;
+  category: string
 };
 
 export function CriarExaustor() {
@@ -35,7 +36,9 @@ export function CriarExaustor() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Refrigeração"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -119,13 +122,30 @@ export function CriarExaustor() {
                   />
                 </Forms>
               </FormsInline>
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Refrigeração"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

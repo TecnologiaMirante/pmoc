@@ -29,6 +29,7 @@ type FormData = {
   status: string;
   potencia: number;
   tensao: number;
+  category: string;
 };
 
 export function CriarArcondicionado() {
@@ -37,7 +38,9 @@ export function CriarArcondicionado() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:'Refrigeração'
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -155,6 +158,23 @@ export function CriarArcondicionado() {
                   />
                 </Forms>
               </FormsInline>
+
+              <FormsInline>
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Refrigeração"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
 
             <ContainerImage>
@@ -162,7 +182,7 @@ export function CriarArcondicionado() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={()=> console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

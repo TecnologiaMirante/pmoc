@@ -12,7 +12,7 @@ export const Select = styled.select`
 
   background-image: url(${setapng});
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: right;
   background-size: 14px;
 
   padding-inline: 10px;

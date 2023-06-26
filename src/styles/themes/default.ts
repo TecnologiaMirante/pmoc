@@ -2,8 +2,11 @@ export const defalutTheme = {
   white: "#fff",
 
   'main-blue': '#3A9DF9',
+  'text-color': '#1D4ED8',
+  'text-ativo': '#020617',
   'bg-blue': '#EFF6FF',
   'slate-950': '#020617',
+  'slate-700': '#334155',
   'slate-500': '#64748B',
   'slate-400': '#64748B',
   'orange-500': '#F97316',
@@ -20,10 +23,10 @@ export const defalutTheme = {
 
   'red-500': '#bf1650',
 
-  'gradient-blue-100': '#3A9DF9',
+  'gradient-blue-100': '#003C78',
 
 
-  'gradient-blue-200': '#4839F9',
+  'gradient-blue-200': '#001828',
 
   'gradient-green-100': '#059669',
   'gradient-green-200': '#10B981',

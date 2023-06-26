@@ -1,11 +1,11 @@
 import { ButtonContainer } from "./styles";
 
-export function DeleteButton() {
+type DeleteButtonProps = {
+  onClick: () => void;
+};
+
+export function DeleteButton({ onClick }: DeleteButtonProps) {
   return (
-    <ButtonContainer>   
-      <button>
-        Excluir equipamento
-      </button>  
-    </ButtonContainer>
+    <ButtonContainer onClick={onClick}>Excluir equipamento</ButtonContainer>
   );
 }

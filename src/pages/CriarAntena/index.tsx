@@ -42,7 +42,9 @@ export function CriarAntena() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:'Irradiação'
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -55,6 +57,7 @@ export function CriarAntena() {
       <ContainerTitle>
         <Title>Antena</Title>
       </ContainerTitle>
+      
       <ContainerPai>
         <ContainerFilhoDoPai>
           <ContainerCard>
@@ -219,12 +222,11 @@ export function CriarAntena() {
                     control={control}
                     name="category"
                     rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { value } }) => (
                       <InputArea
                         type="text"
-                        placeholder="Categoria XX"
+                        placeholder="Irradiação"
                         value={value}
-                        onChange={onChange}
                       />
                     )}
                   />
@@ -236,7 +238,7 @@ export function CriarAntena() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

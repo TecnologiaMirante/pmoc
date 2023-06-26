@@ -1,8 +1,13 @@
 import { ButtonContainer } from "./styles";
 
-export function CancelButton() {
+type CancelButtonProps = {
+  onClick: () => void;
+};
+
+
+export function CancelButton({ onClick }: CancelButtonProps) {
   return (
-    <ButtonContainer>   
+    <ButtonContainer onClick={onClick}>   
         Cancelar
     </ButtonContainer>
   );

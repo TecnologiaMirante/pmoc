@@ -28,6 +28,7 @@ type FormData = {
   status: string;
   modelo: string;
   corrente_maxima: number;
+  category: string;
 };
 
 export function CriarDisjuntor() {
@@ -36,7 +37,9 @@ export function CriarDisjuntor() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Elétrica"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -137,6 +140,22 @@ export function CriarDisjuntor() {
                     )}
                   />
                 </Forms>
+
+                <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Elétrica"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
               </FormsInline>
             </FormsContainer>
             <ContainerImage>
@@ -144,7 +163,7 @@ export function CriarDisjuntor() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  background: linear-gradient(to right, ${props => props.theme['gradient-blue-100']} 0%,  ${props => props.theme['gradient-blue-200']} 100%);
+  background: linear-gradient(to right, ${props => props.theme['gradient-blue-200']} 0%,  ${props => props.theme['gradient-blue-100']} 100%);
   padding: .8rem 0 .8rem;
   position: fixed;
   top: 0px;

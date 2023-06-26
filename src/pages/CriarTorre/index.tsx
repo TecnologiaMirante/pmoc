@@ -21,6 +21,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { AterramentoStatusList } from "../../dtos/AterramentoDTO";
 
 type FormData = {
   codigo: string;
@@ -29,7 +30,7 @@ type FormData = {
   status: string;
   tipo_estrutura: string;
   altura: number;
-  aterramento: boolean;
+  aterramento: string;
   category: string;
 };
 
@@ -39,7 +40,9 @@ export function CriarTorre() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Irradiação"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -88,22 +91,7 @@ export function CriarTorre() {
                     )}
                   />
                 </Forms>
-                <Forms>
-                  <Subtitle>Aterramento</Subtitle>
-                  <Controller
-                    control={control}
-                    name="aterramento"
-                    rules={{ required: "Informe se existe aterramento" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="string"
-                        placeholder="Sim"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Forms>
+
               </FormsInline>
               <FormsInline>
                 <Forms>
@@ -193,6 +181,37 @@ export function CriarTorre() {
                     )}
                   />
                 </Forms>
+                <Forms>
+                  <Subtitle>Aterramento</Subtitle>
+                  <Controller
+                    control={control}
+                    name="aterramento"
+                    render={({ field: { onChange, value } }) => (
+                      <Dropdown
+                        options={AterramentoStatusList}
+                        value={value}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
+
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Irradiação"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
               </FormsInline>
             </FormsContainer>
             <ContainerImage>
@@ -200,7 +219,7 @@ export function CriarTorre() {
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>

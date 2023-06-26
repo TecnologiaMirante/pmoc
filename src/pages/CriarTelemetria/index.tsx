@@ -28,6 +28,7 @@ type FormData = {
   modelo: string;
   status: string;
   corrente_maxima: number;
+  category: string;
 };
 
 export function CriarTelemetria() {
@@ -36,12 +37,15 @@ export function CriarTelemetria() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {},
+    defaultValues: {
+      category:"Telemetria"
+    },
   });
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
   };
+
 
   return (
     <div>
@@ -53,7 +57,7 @@ export function CriarTelemetria() {
         <ContainerFilhoDoPai>
           <ContainerCard>
             <FormsContainer>
-              <FormsInline>
+              <FormsInline >
                 <Forms>
                   <Subtitle>Código</Subtitle>
                   <Controller
@@ -87,7 +91,7 @@ export function CriarTelemetria() {
                   />
                 </Forms>
               </FormsInline>
-              <FormsInline>
+              <FormsInline >
                 <Forms>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
@@ -120,13 +124,30 @@ export function CriarTelemetria() {
                   />
                 </Forms>
               </FormsInline>
+              <FormsInline>
+              <Forms>
+                  <Subtitle>Categoria</Subtitle>
+                  <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Informe a categoria" }}
+                    render={({ field: { value } }) => (
+                      <InputArea
+                        type="text"
+                        placeholder="Telemetria"
+                        value={value}
+                      />
+                    )}
+                  />
+                </Forms>
+              </FormsInline>
             </FormsContainer>
             <ContainerImage>
               <Image src={quadrado} alt="quadrado" />
             </ContainerImage>
           </ContainerCard>
           <ContainerButton>
-            <CancelButton />
+            <CancelButton onClick={() => console.log('cancelar')}/>
             <SaveButton onClick={handleSubmit(onSubmit)} />
           </ContainerButton>
         </ContainerFilhoDoPai>
