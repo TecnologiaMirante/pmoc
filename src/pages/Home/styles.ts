@@ -5,7 +5,7 @@ export const ContainerPai = styled.div`
   flex-direction: row;
   width: 100%;
   margin-top: 100px;
-  padding-inline: 36px;
+  padding-inline: 211px;
   min-height: 1100px;
   /* @media (max-width: 1100px) {
     justify-content: space-between;
@@ -16,8 +16,8 @@ export const ContainerPai = styled.div`
 
 export const ContainerFilho = styled.div`
   flex-direction: column;
-  width: 80%;
-  min-height: 900px;
+
+
 `;
 
 export const InfoAtivo = styled.div`
@@ -38,21 +38,19 @@ export const TitleInfo = styled.div`
 export const ContainerAnexos = styled.div`
   display: flex;
   background-color: ${(props) => props.theme["white"]};
-  width: 90%;
-  padding: 36px;
-  margin-top: 20px;
+  padding: 1.5rem 2.25rem 2.25rem 2.25rem;
+  align-items: flex-start;
+  gap: 1.5rem;
   border-radius: 8px;
+  box-shadow: 0px 5px 40px -5px rgba(58, 157, 249, 0.3);
   flex-wrap: wrap;
   .wrapper {
     display: grid;
-    grid-template-columns: 100px 100px 100px;
   }
 `;
 
 export const ContainerFilho2 = styled.div`
   flex-direction: column;
-  width: 20%;
-  min-height: 1120px;
 `;
 
 export const TipoDeBusca = styled.div`
@@ -92,11 +90,11 @@ export const Line = styled.div`
 `;
 
 export const ContainerImage = styled.div`
-  margin-left: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 90px;
+  align-items: center;
+  gap: 0.5rem;
+  width: 13.0rem;
 `;
 
 export const Image = styled.img`
@@ -109,16 +107,22 @@ export const NomeDoc = styled.h2`
   font-family: "Lato", sans-serif;
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 5px;
   text-align: center;
-  margin-top: 3px;
+
 `;
 
 export const DocAutor = styled.p`
   color: ${(props) => props.theme["slate-700"]};
   font-weight: 400;
   font-size: 1rem;
-  margin-bottom: 8px;
   font-family: "Lato", sans-serif;
   text-align: center;
+`;
+
+export const InfoDocs = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  align-items: stretch;
 `;

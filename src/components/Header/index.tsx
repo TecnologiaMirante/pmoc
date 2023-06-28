@@ -1,11 +1,13 @@
-import { HeaderContainer, HeaderContent, ListItems, UserContainer } from "./styles";
+import { HeaderContainer, HeaderContent, ListItems, UserContainer, Logo } from "./styles";
 import { Question, BellSimple, User } from "phosphor-react";
+import logo from '../../assets/Logo.png'
+
 
 export function Header() {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <h2>Logo</h2>
+        <Logo src={logo} alt="logomarca"/>
         <ListItems>
           <li><a href="#">Home</a></li>
           <li><a href="#">Monitor</a></li>

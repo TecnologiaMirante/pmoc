@@ -48,3 +48,7 @@ export const UserContainer = styled.div`
   background: ${props => props.theme['white']};
   border-radius: 99999px;
 `;
+
+export const Logo = styled.img`
+  
+`;

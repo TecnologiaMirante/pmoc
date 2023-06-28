@@ -2,6 +2,7 @@ import {
   CodAtivo,
   ContainerCard,
   ContainerImage,
+  SuperContainer,
   ContainerInfo,
   DetalhesEquipamento,
   Image,
@@ -17,7 +18,8 @@ export function CardAtivo() {
   return (
     <>
       <ContainerCard>
-        <InfoEquipamento>
+       <SuperContainer>
+       <InfoEquipamento>
           <TitleElementos>
             <Title>NoBreak:</Title>
             <CodAtivo>NBR001</CodAtivo>
@@ -41,11 +43,13 @@ export function CardAtivo() {
               <Title>Tensão Saída</Title>
               <Subtitle>220v</Subtitle>
             </DetalhesEquipamento>
+
           </ContainerInfo>
         </InfoEquipamento>
-        <ContainerImage>
-          <Image src={quadrado} alt="quadrado" />
-        </ContainerImage>
+
+        <Image src={quadrado} alt="quadrado" />
+       </SuperContainer>
+
       </ContainerCard>
     </>
   );
