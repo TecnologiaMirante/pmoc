@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { ContainerInput, Input } from "./styles";
+import { ContainerBusca, ContainerInput, Input } from "./styles";
 import { FiSearch } from 'react-icons/fi';
 
 
@@ -18,14 +18,16 @@ export function InputPesquisar({ type, placeholder, value, onChange }: Props) {
   };
 
   return (
-    <ContainerInput>
-      <FiSearch size={20} color="#1D4ED8" />
-      <Input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-      />
-    </ContainerInput>
+    <ContainerBusca>
+      <ContainerInput>
+        <FiSearch size={16} color="#1D4ED8" />
+        <Input
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+        />
+      </ContainerInput>
+    </ContainerBusca>
   );
 }

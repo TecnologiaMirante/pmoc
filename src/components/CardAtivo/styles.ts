@@ -12,6 +12,7 @@ export const ContainerCard = styled.div`
   display: flex;
   padding: 1.5rem 2.25rem 2.25rem 2.25rem;
   flex-direction: column;
+  align-items: flex-start;
   align-self: stretch;
   gap: 0.625rem;
   border-radius: 8px;

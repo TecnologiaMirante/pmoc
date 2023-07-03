@@ -5,6 +5,7 @@ export const defalutTheme = {
   'text-color': '#1D4ED8',
   'text-ativo': '#020617',
   'bg-blue': '#EFF6FF',
+  'box': '#E0EBFF',
   'slate-950': '#020617',
   'slate-700': '#334155',
   'slate-500': '#64748B',

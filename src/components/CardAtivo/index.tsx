@@ -1,7 +1,6 @@
 import {
   CodAtivo,
   ContainerCard,
-  ContainerImage,
   SuperContainer,
   ContainerInfo,
   DetalhesEquipamento,

@@ -1,21 +1,17 @@
 import { CardAtivo } from "../../components/CardAtivo";
+import { CardFilter } from "../../components/CardFilter";
 import { Header } from "../../components/Header";
-import { InputPesquisar } from "../../components/InputPerquisar";
 import {
+  ContainerAvo,
   ContainerAnexos,
   ContainerFilho,
-  ContainerFilho2,
   ContainerImage,
   ContainerPai,
-  ContainerSubtitle,
   DocAutor,
   Image,
-  InfoAtivo,
+  SubPages,
   InfoDocs,
-  Line,
   NomeDoc,
-  Subtitle,
-  TipoDeBusca,
   Title,
   TitleInfo,
 } from "./styles";
@@ -25,64 +21,69 @@ export function Home() {
   return (
     <div>
       <Header />
-      <ContainerPai>
-        <ContainerFilho>
-          <Title>Ativos</Title>
-          <CardAtivo />
+      <ContainerAvo>
+        <ContainerPai>
+        <Title>15 Documentos</Title>
+          <ContainerFilho>
+            
+            <CardAtivo />
 
-          <InfoAtivo>
-            <TitleInfo>Histórico de Manutenções</TitleInfo>
-            <TitleInfo>Documentos</TitleInfo>
-          </InfoAtivo>
+            <SubPages>
+              <TitleInfo>Histórico de Manutenções</TitleInfo>
+              <TitleInfo>Documentos</TitleInfo>
+            </SubPages>
 
-          <ContainerAnexos>
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-              <InfoDocs>
-                <NomeDoc>Nf-e</NomeDoc>
-                <DocAutor>Tec. Ramon</DocAutor>
-                <DocAutor>12/06/2023</DocAutor>
-              </InfoDocs>
-            </ContainerImage>
+            <ContainerAnexos>
+              <ContainerImage>
+                <Image src={quadrado} alt="quadrado" />
+                <InfoDocs>
+                  <NomeDoc>Nf-e</NomeDoc>
+                  <DocAutor>Tec. Ramon</DocAutor>
+                  <DocAutor>12/06/2023</DocAutor>
+                </InfoDocs>
+              </ContainerImage>
 
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-              <InfoDocs>
-                <NomeDoc>Nf-e</NomeDoc>
-                <DocAutor>Tec. Ramon</DocAutor>
-                <DocAutor>12/06/2023</DocAutor>
-              </InfoDocs>
-            </ContainerImage>
+              <ContainerImage>
+                <Image src={quadrado} alt="quadrado" />
+                <InfoDocs>
+                  <NomeDoc>Nf-e</NomeDoc>
+                  <DocAutor>Tec. Ramon</DocAutor>
+                  <DocAutor>12/06/2023</DocAutor>
+                </InfoDocs>
+              </ContainerImage>
 
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-              <InfoDocs>
-                <NomeDoc>Nf-e</NomeDoc>
-                <DocAutor>Tec. Ramon</DocAutor>
-                <DocAutor>12/06/2023</DocAutor>
-              </InfoDocs>
-            </ContainerImage>
+              <ContainerImage>
+                <Image src={quadrado} alt="quadrado" />
+                <InfoDocs>
+                  <NomeDoc>Nf-e</NomeDoc>
+                  <DocAutor>Tec. Ramon</DocAutor>
+                  <DocAutor>12/06/2023</DocAutor>
+                </InfoDocs>
+              </ContainerImage>
 
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-              <InfoDocs>
-                <NomeDoc>Nf-e</NomeDoc>
-                <DocAutor>Tec. Ramon</DocAutor>
-                <DocAutor>12/06/2023</DocAutor>
-              </InfoDocs>
-            </ContainerImage>
+              <ContainerImage>
+                <Image src={quadrado} alt="quadrado" />
+                <InfoDocs>
+                  <NomeDoc>Nf-e</NomeDoc>
+                  <DocAutor>Tec. Ramon</DocAutor>
+                  <DocAutor>12/06/2023</DocAutor>
+                </InfoDocs>
+              </ContainerImage>
 
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-              <InfoDocs>
-                <NomeDoc>Nf-e</NomeDoc>
-                <DocAutor>Tec. Ramon</DocAutor>
-                <DocAutor>12/06/2023</DocAutor>
-              </InfoDocs>
-            </ContainerImage>
-          </ContainerAnexos>
-        </ContainerFilho>
-      </ContainerPai>
+              <ContainerImage>
+                <Image src={quadrado} alt="quadrado" />
+                <InfoDocs>
+                  <NomeDoc>Nf-e</NomeDoc>
+                  <DocAutor>Tec. Ramon</DocAutor>
+                  <DocAutor>12/06/2023</DocAutor>
+                </InfoDocs>
+              </ContainerImage>
+            </ContainerAnexos>
+          </ContainerFilho>
+        </ContainerPai>
+        <CardFilter></CardFilter>
+       
+      </ContainerAvo>
     </div>
   );
 }

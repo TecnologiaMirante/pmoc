@@ -1,38 +1,48 @@
 import { css, styled } from "styled-components";
 
+
+
+export const ContainerAvo = styled.div`
+  padding-top: 7.8125rem;
+  width: 100%;
+  justify-content: center;
+  display: inline-flex;
+  align-items: flex-start;
+  gap:2.25rem;
+`;
+
 export const ContainerPai = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin-top: 100px;
-  padding-inline: 211px;
-  min-height: 1100px;
-  /* @media (max-width: 1100px) {
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  } */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+`;
+
+export const ContainerPaiFilter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
 `;
 
 export const ContainerFilho = styled.div`
   flex-direction: column;
-
-
-`;
-
-export const InfoAtivo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  gap: 1.5rem;
+`;
+
+export const SubPages = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 `;
 
 export const TitleInfo = styled.div`
   color: ${(props) => props.theme["text-color"]};
   font-family: "Lato", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin-right: 15px;
+  font-size: 1rem;
+  font-weight: 400;
 `;
 
 export const ContainerAnexos = styled.div`
@@ -65,9 +75,8 @@ export const TipoDeBusca = styled.div`
 export const Title = styled.h2`
   color: ${(props) => props.theme["text-color"]};
   font-family: "Lato", sans-serif;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 20px;
 `;
 
 export const Subtitle = styled.div`
