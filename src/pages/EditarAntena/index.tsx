@@ -1,19 +1,17 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
 } from "./styles";
+import { InputArea } from "../../components/Input";
 import quadrado from "../../assets/quadrado.png";
 import { useForm, Controller, FormState } from "react-hook-form";
 import { SaveButton } from "../../components/SaveButton";
@@ -55,15 +53,14 @@ export function EditarAntena() {
   return (
     <>
       <Header />
-      <ContainerTitle>
-        <Title>Antena</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
+      <Container>
+        <ContainerCenter>
+          <Title>Antena</Title>
+
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
@@ -78,8 +75,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
@@ -93,10 +91,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
@@ -111,8 +108,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
@@ -127,11 +125,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Gain</Subtitle>
                   <Controller
                     control={control}
@@ -146,8 +142,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Fendas</Subtitle>
                   <Controller
                     control={control}
@@ -162,11 +159,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Tipo</Subtitle>
                   <Controller
                     control={control}
@@ -180,8 +175,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>VR</Subtitle>
                   <Controller
                     control={control}
@@ -196,11 +192,9 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Posição torre</Subtitle>
                   <Controller
                     control={control}
@@ -215,12 +209,14 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
+                    rules={{ required: "Informe a categoria" }}
                     render={({ field: { value } }) => (
                       <InputArea
                         type="text"
@@ -229,20 +225,20 @@ export function EditarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
+
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+
+            <Buttons>
+              <DeleteButton onClick={() => console.log("excluir")}/>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </>
   );
 }

@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-  width: 150px;
-  height: 40px;
+  width: 11.25rem;
+  height: auto;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.5rem;
 
-  margin-top: 10px;
-  margin-left: 10px;
-  width: 150px;
-  height: 40px;
 
   display: flex;
   justify-content: center;
@@ -25,7 +23,6 @@ export const ButtonContainer = styled.button`
     ${(props) => props.theme["gradient-dark-200"]} 100%
   );
   border: none;
-  border-radius: 8px;
 
   &:hover {
     color: ${(props) => props.theme["white"]};

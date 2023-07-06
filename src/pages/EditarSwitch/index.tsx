@@ -1,15 +1,13 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
+
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -18,9 +16,9 @@ import quadrado from "../../assets/quadrado.png";
 import { useForm, Controller, FormState } from "react-hook-form";
 import { SaveButton } from "../../components/SaveButton";
 import { CancelButton } from "../../components/CancelButton/CancelButton";
-import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type FormData = {
@@ -39,7 +37,7 @@ export function EditarSwitch() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      category:"Telemetria"
+      category: "Telemetria",
     },
   });
 
@@ -50,15 +48,13 @@ export function EditarSwitch() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Switch</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
+      <Container>
+        <ContainerCenter>
+          <Title>Switch</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
@@ -73,9 +69,9 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -88,10 +84,8 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
@@ -106,8 +100,8 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
@@ -122,10 +116,8 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Quantidade de portas</Subtitle>
                   <Controller
                     control={control}
@@ -140,8 +132,8 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
@@ -155,21 +147,18 @@ export function EditarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <DeleteButton onClick={() => console.log("excluir")} />
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

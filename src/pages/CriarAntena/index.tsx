@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -22,6 +19,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { TipoAntenaList } from "../../dtos/TipoAntenaDTO";
+import { InputArea } from "../../components/Input";
 
 type FormData = {
   codigo: string;
@@ -43,7 +41,7 @@ export function CriarAntena() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      category:'Irradiação'
+      category: "Irradiação",
     },
   });
 
@@ -54,16 +52,14 @@ export function CriarAntena() {
   return (
     <>
       <Header />
-      <ContainerTitle>
-        <Title>Antena</Title>
-      </ContainerTitle>
-      
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
+      <Container>
+        <ContainerCenter>
+          <Title>Antena</Title>
+
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
@@ -78,8 +74,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
@@ -93,10 +90,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
@@ -111,8 +107,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
@@ -127,11 +124,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Gain</Subtitle>
                   <Controller
                     control={control}
@@ -146,8 +141,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Fendas</Subtitle>
                   <Controller
                     control={control}
@@ -162,11 +158,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Tipo</Subtitle>
                   <Controller
                     control={control}
@@ -180,8 +174,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>VR</Subtitle>
                   <Controller
                     control={control}
@@ -196,11 +191,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
+                </Form>
 
-              <FormsInline>
-                <Forms>
+                <Form>
                   <Subtitle>Posição torre</Subtitle>
                   <Controller
                     control={control}
@@ -215,8 +208,9 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
@@ -230,19 +224,19 @@ export function CriarAntena() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
+
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+
+            <Buttons>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </>
   );
 }

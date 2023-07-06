@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -22,6 +19,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { AterramentoStatusList } from "../../dtos/AterramentoDTO";
+import { InputArea } from "../../components/Input";
 
 type FormData = {
   codigo: string;
@@ -52,16 +50,14 @@ export function CriarTorre() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Torre</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Torre</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -75,9 +71,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -90,12 +86,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -109,10 +102,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -126,12 +118,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Tipo da estrutura</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Tipo da estrutura</Subtitle>
                   <Controller
                     control={control}
                     name="tipo_estrutura"
@@ -145,9 +134,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Altura</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Altura</Subtitle>
                   <Controller
                     control={control}
                     name="altura"
@@ -161,12 +150,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -180,9 +166,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Aterramento</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Aterramento</Subtitle>
                   <Controller
                     control={control}
                     name="aterramento"
@@ -194,12 +180,9 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-
-              <FormsInline>
-              <Forms>
-                  <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -211,19 +194,17 @@ export function CriarTorre() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

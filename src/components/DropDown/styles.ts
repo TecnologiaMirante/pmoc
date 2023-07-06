@@ -3,10 +3,11 @@ import setapng from "../../assets/seta.png";
 
 export const Select = styled.select`
   background-color: ${(props) => props.theme["bg-blue"]};
-  height: 30px;
-  width: 183px;
+  height: 1.875rem;
+  width: 8.875rem;
   border-width: 0px;
   font-family: "Lato", sans-serif;
+  padding: 0.375rem 0.625rem;
 
   appearance: none;
 
@@ -14,6 +15,4 @@ export const Select = styled.select`
   background-repeat: no-repeat;
   background-position: right;
   background-size: 14px;
-
-  padding-inline: 10px;
 `;

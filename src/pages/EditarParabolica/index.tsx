@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -21,6 +18,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type FormData = {
@@ -52,16 +50,14 @@ export function EditarParabolica() {
   return (
     <>
       <Header />
-      <ContainerTitle>
-        <Title>Parabólica</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Parabólica</Title>
+          <Content>
+          <Card>
+            <ContainerForms>
+              <Form>
+              <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -75,9 +71,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Status</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -90,11 +86,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -108,9 +102,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -124,11 +118,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Diametro</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Diametro</Subtitle>
                   <Controller
                     control={control}
                     name="diametro"
@@ -142,9 +134,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Satélite</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Satélite</Subtitle>
                   <Controller
                     control={control}
                     name="satelite"
@@ -158,11 +150,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Receptor</Subtitle>
                   <Controller
                     control={control}
                     name="receptor"
@@ -176,9 +166,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -191,21 +181,18 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+              </Form>
+            </ContainerForms>
+            <Image src={quadrado} alt="quadrado" />
+          </Card>
+          <Buttons>
+              <DeleteButton onClick={() => console.log("excluir")}/>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </>
   );
 }

@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -22,6 +19,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { Dropdown } from "../../components/DropDown";
 import { TipoCaboList } from "../../dtos/TipoCaboDTO";
+import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type FormData = {
@@ -52,16 +50,14 @@ export function EditarCabo() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
+     <Container>
+      <ContainerCenter>
         <Title>Cabo</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+        <Content>
+          <Card>
+            <ContainerForms>
+              <Form>
+              <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -75,9 +71,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Status</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -90,11 +86,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -108,9 +102,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -124,12 +118,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Tipo</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Tipo</Subtitle>
                   <Controller
                     control={control}
                     name="tipo"
@@ -142,9 +133,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Tamanho</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Tamanho</Subtitle>
                   <Controller
                     control={control}
                     name="tamanho"
@@ -158,12 +149,9 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+              </Form>
+              <Form>
+              <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -176,20 +164,18 @@ export function EditarCabo() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
-              <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+              </Form>
+            </ContainerForms>
+            <Image src={quadrado} alt="quadrado" />
+          </Card>
+          <Buttons>
+            <DeleteButton onClick={() => console.log("excluir")}/>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+        </Content>
+      </ContainerCenter>
+     </Container>
     </div>
   );
 }

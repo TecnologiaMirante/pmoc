@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -21,6 +18,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type FormData = {
@@ -49,16 +47,14 @@ export function EditarCombinador() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Combinador</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Combinador</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -72,8 +68,8 @@ export function EditarCombinador() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+                <Form>
                 <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
@@ -87,11 +83,9 @@ export function EditarCombinador() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -105,9 +99,9 @@ export function EditarCombinador() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -121,11 +115,9 @@ export function EditarCombinador() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -138,20 +130,18 @@ export function EditarCombinador() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <DeleteButton onClick={() => console.log("excluir")}/>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

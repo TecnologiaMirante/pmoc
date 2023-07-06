@@ -1,29 +1,31 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-    width: 150px;
-    height: 40px;
+  width: 11.25rem;
+  height: auto;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => props.theme["white"]};
+  font: 400 0.8rem Inter, sans-serif;
+  text-align: center;
+  cursor: pointer;
 
+  background: linear-gradient(
+    to right,
+    ${(props) => props.theme["gradient-blue-100"]} 0%,
+    ${(props) => props.theme["gradient-blue-200"]} 100%
+  );
+  border: none;
 
-      margin-top: 10px;
-      margin-left: 10px;
-      width: 150px;
-      height: 40px;
-      
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: ${props => props.theme['white']};
-      font: 400 .8rem Inter, sans-serif; 
-      text-align: center;
-      cursor: pointer;
-
-      background: linear-gradient(to right, ${props => props.theme['gradient-blue-100']} 0%,  ${props => props.theme['gradient-blue-200']} 100%);
-      border: none;
-      border-radius: 8px;
-
-      &:hover{
-        color: ${props => props.theme['white']};
-        background: linear-gradient(to left, ${props => props.theme['gradient-blue-100']} 0%,  ${props => props.theme['gradient-blue-200']} 100%);
-      } 
+  &:hover {
+    color: ${(props) => props.theme["white"]};
+    background: linear-gradient(
+      to left,
+      ${(props) => props.theme["gradient-blue-100"]} 0%,
+      ${(props) => props.theme["gradient-blue-200"]} 100%
+    );
+  }
 `;

@@ -1,8 +1,8 @@
 import { ThemeProvider } from "styled-components";
 import { defalutTheme } from "./styles/themes/default";
 import { GlobalStyle } from "./styles/global";
-import { Home } from "./pages/Home";
-import { CriarAtivo } from "./pages/criarAtivo";
+import { EditarAntena } from "./pages/EditarAntena";
+import { EditarArcondicionado } from "./pages/EditarArcondicionado";
 
 
 export function App() {
@@ -10,7 +10,7 @@ export function App() {
   return (
    <ThemeProvider theme={defalutTheme}>
     <GlobalStyle />
-      <CriarAtivo />
+      <EditarArcondicionado />
    </ThemeProvider>
   )
 }

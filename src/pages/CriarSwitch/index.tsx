@@ -1,15 +1,13 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
+
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -21,6 +19,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 
 type FormData = {
   codigo: string;
@@ -38,7 +37,7 @@ export function CriarSwitch() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      category:"Telemetria"
+      category: "Telemetria",
     },
   });
 
@@ -49,15 +48,13 @@ export function CriarSwitch() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Switch</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
+      <Container>
+        <ContainerCenter>
+          <Title>Switch</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
@@ -72,9 +69,9 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -87,10 +84,8 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
@@ -105,8 +100,8 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
@@ -121,10 +116,8 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Quantidade de portas</Subtitle>
                   <Controller
                     control={control}
@@ -139,8 +132,8 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
+                </Form>
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
@@ -154,20 +147,17 @@ export function CriarSwitch() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

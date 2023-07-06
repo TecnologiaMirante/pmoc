@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -21,6 +18,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type FormData = {
@@ -54,16 +52,14 @@ export function EditarTransmissor() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Transmissor</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Transmissor</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -77,9 +73,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -92,11 +88,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -110,9 +104,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -126,11 +120,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Programmed power</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Programmed power</Subtitle>
                   <Controller
                     control={control}
                     name="programmed_power"
@@ -144,10 +136,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Antena</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Antena</Subtitle>
                   <Controller
                     control={control}
                     name="antena"
@@ -161,11 +152,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Canal virtual</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Canal virtual</Subtitle>
                   <Controller
                     control={control}
                     name="canal_virtual"
@@ -179,10 +168,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Canal físico</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Canal físico</Subtitle>
                   <Controller
                     control={control}
                     name="canal_fisico"
@@ -196,11 +184,9 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Receptor</Subtitle>
                   <Controller
                     control={control}
                     name="receptor"
@@ -214,14 +200,12 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
-                    rules={{ required: "Informe a categoria" }}
                     render={({ field: { value } }) => (
                       <InputArea
                         type="text"
@@ -230,20 +214,18 @@ export function EditarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <DeleteButton onClick={() => console.log('deletar')}/>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <DeleteButton onClick={() => console.log("cancelar")}/>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

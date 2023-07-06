@@ -1,15 +1,12 @@
 import { Header } from "../../components/Header";
-import { InputArea } from "../../components/Input";
 import {
-  ContainerButton,
-  ContainerCard,
-  ContainerFilhoDoPai,
-  ContainerImage,
-  ContainerPai,
-  ContainerTitle,
-  Forms,
-  FormsContainer,
-  FormsInline,
+  Buttons,
+  Card,
+  Container,
+  ContainerCenter,
+  ContainerForms,
+  Content,
+  Form,
   Image,
   Subtitle,
   Title,
@@ -21,6 +18,7 @@ import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
+import { InputArea } from "../../components/Input";
 
 type FormData = {
   codigo: string;
@@ -53,16 +51,14 @@ export function CriarTransmissor() {
   return (
     <div>
       <Header />
-      <ContainerTitle>
-        <Title>Transmissor</Title>
-      </ContainerTitle>
-      <ContainerPai>
-        <ContainerFilhoDoPai>
-          <ContainerCard>
-            <FormsContainer>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Transmissor</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
                     name="codigo"
@@ -76,9 +72,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -91,11 +87,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
                     name="marca"
@@ -109,9 +103,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-                <Forms>
-                  <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
                     name="modelo"
@@ -125,11 +119,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Programmed power</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Programmed power</Subtitle>
                   <Controller
                     control={control}
                     name="programmed_power"
@@ -143,10 +135,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Antena</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Antena</Subtitle>
                   <Controller
                     control={control}
                     name="antena"
@@ -160,11 +151,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Canal virtual</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Canal virtual</Subtitle>
                   <Controller
                     control={control}
                     name="canal_virtual"
@@ -178,10 +167,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Canal físico</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Canal físico</Subtitle>
                   <Controller
                     control={control}
                     name="canal_fisico"
@@ -195,11 +183,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-              <FormsInline>
-                <Forms>
-                  <Subtitle>Receptor</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Receptor</Subtitle>
                   <Controller
                     control={control}
                     name="receptor"
@@ -213,10 +199,9 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-
-                <Forms>
-                  <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -228,19 +213,17 @@ export function CriarTransmissor() {
                       />
                     )}
                   />
-                </Forms>
-              </FormsInline>
-            </FormsContainer>
-            <ContainerImage>
+                </Form>
+              </ContainerForms>
               <Image src={quadrado} alt="quadrado" />
-            </ContainerImage>
-          </ContainerCard>
-          <ContainerButton>
-            <CancelButton onClick={() => console.log('cancelar')}/>
-            <SaveButton onClick={handleSubmit(onSubmit)} />
-          </ContainerButton>
-        </ContainerFilhoDoPai>
-      </ContainerPai>
+            </Card>
+            <Buttons>
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={() => console.log("salvou")} />
+            </Buttons>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }
