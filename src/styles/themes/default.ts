@@ -6,6 +6,7 @@ export const defalutTheme = {
   'text-ativo': '#020617',
   'bg-blue': '#EFF6FF',
   'box': '#E0EBFF',
+  'cardAdd':'#F1F5F9',
   'slate-950': '#020617',
   'slate-700': '#334155',
   'slate-500': '#64748B',

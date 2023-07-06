@@ -1,16 +1,30 @@
 import { Header } from "../../components/Header";
 import { useForm, Controller, FormState } from "react-hook-form";
 import {
+  Buttons,
+  Card,
+  CardAdicionar,
   Container,
+  ContainerAtivos,
   ContainerDados,
   ContainerIdentificacao,
   ContainerImage,
   ContainerInfo,
   ContainerInfos,
   ContainerTexts,
+  Content,
   ContrainerMae,
+  Excluir,
+  Frame142,
+  Frame145,
+  Frame190,
   Image,
+  Line,
+  List,
+  MiniCard,
+  TextCodigo,
   Title,
+  TitleAdicionar,
 } from "./styles";
 
 import { Dropdown } from "../../components/DropDown";
@@ -18,6 +32,9 @@ import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import quadrado from "../../assets/quadrado.png";
 import { InputArea } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
+import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { CancelButton } from "../../components/CancelButton/CancelButton";
+import { SaveButton } from "../../components/SaveButton";
 
 type FormData = {
   identificacao: string;
@@ -169,6 +186,153 @@ export function CriarEstacao() {
             <Image src={quadrado} alt="quadrado" />
           </ContainerImage>
         </ContainerInfo>
+        
+        <Title>Equipamentos</Title>
+
+        <Content>
+        <ContainerAtivos>
+          <Frame145>
+            {/* Elétrica */}
+            <Frame142>
+              <Frame190>
+                <Title>Elétrica</Title>
+                <List>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <CardAdicionar onClick={() => console.log('clicou')}>
+                    <TitleAdicionar>+</TitleAdicionar>
+                  </CardAdicionar>
+                </List>
+              </Frame190>
+              <Line />
+            </Frame142>
+            {/* Refrigeração */}
+            <Frame142>
+              <Frame190>
+                <Title>Refrigeração</Title>
+                <List>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <CardAdicionar onClick={() => console.log('clicou')}>
+                    <TitleAdicionar>+</TitleAdicionar>
+                  </CardAdicionar>
+                </List>
+              </Frame190>
+              <Line />
+            </Frame142>
+            {/* Irradiação */}
+            <Frame142>
+              <Frame190>
+                <Title>Irradição</Title>
+                <List>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <CardAdicionar onClick={() => console.log('clicou')}>
+                    <TitleAdicionar>+</TitleAdicionar>
+                  </CardAdicionar>
+                </List>
+              </Frame190>
+              <Line />
+            </Frame142>
+            {/* Telemetria */}
+            <Frame142>
+              <Frame190>
+                <Title>Telemetria</Title>
+                <List>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <MiniCard>
+                    <Card>
+                      <TextCodigo>Cod</TextCodigo>
+                      <Title>Equipamento</Title>
+                      <Excluir>X</Excluir>
+                    </Card>
+                  </MiniCard>
+                  <CardAdicionar onClick={() => console.log('clicou')}>
+                    <TitleAdicionar>+</TitleAdicionar>
+                  </CardAdicionar>
+                </List>
+              </Frame190>
+            </Frame142>
+          </Frame145>
+        </ContainerAtivos>
+        
+        <Buttons>
+
+        <DeleteButton onClick={() => console.log('deletar')}/>
+        <CancelButton onClick={() => console.log('cancelar')}/>
+        <SaveButton onClick={() => console.log('salvar')}/>
+        </Buttons>
+        </Content>
 
 
 
