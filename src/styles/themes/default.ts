@@ -22,6 +22,8 @@ export const defalutTheme = {
   'gray-700': '#29292E',
   'gray-800': '#202024',
   'gray-900': '#121214',
+  
+  'black': '#020617',
 
   'red-500': '#bf1650',
 

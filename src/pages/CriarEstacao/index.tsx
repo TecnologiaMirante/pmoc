@@ -1,11 +1,9 @@
 import { Header } from "../../components/Header";
 import { useForm, Controller, FormState } from "react-hook-form";
+import React, { useState } from 'react';
 import {
   Buttons,
-  Card,
-  CardAdicionar,
   Container,
-  ContainerAtivos,
   ContainerDados,
   ContainerIdentificacao,
   ContainerImage,
@@ -14,19 +12,9 @@ import {
   ContainerTexts,
   Content,
   ContrainerMae,
-  Excluir,
-  Frame142,
-  Frame145,
-  Frame190,
   Image,
-  Line,
-  List,
-  MiniCard,
-  TextCodigo,
   Title,
-  TitleAdicionar,
 } from "./styles";
-
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import quadrado from "../../assets/quadrado.png";
@@ -35,6 +23,8 @@ import { TextArea } from "../../components/TextArea";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 import { CancelButton } from "../../components/CancelButton/CancelButton";
 import { SaveButton } from "../../components/SaveButton";
+import { ListEquipamentos } from "../../components/ListEquipamentos";
+import { CardDesvincular } from "../../components/CardDesvincular";
 
 type FormData = {
   identificacao: string;
@@ -51,15 +41,18 @@ export function CriarEstacao() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({});
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+
   return (
     <div>
       <Header />
-      <Container>
+      <Container className={isModalOpen ? "is-modal-active" : ""}>
         <ContrainerMae>
         <Title>Informações</Title>
         {/* card */}
         <ContainerInfo>
-
           {/* inputs */}
           <ContainerDados>
            
@@ -176,167 +169,27 @@ export function CriarEstacao() {
             </ContainerInfos>
 
           </ContainerDados>
-
-
-
-
-
-
           <ContainerImage>
             <Image src={quadrado} alt="quadrado" />
           </ContainerImage>
         </ContainerInfo>
-        
-        <Title>Equipamentos</Title>
 
+
+        <Title>Equipamentos</Title>
         <Content>
-        <ContainerAtivos>
-          <Frame145>
-            {/* Elétrica */}
-            <Frame142>
-              <Frame190>
-                <Title>Elétrica</Title>
-                <List>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <CardAdicionar onClick={() => console.log('clicou')}>
-                    <TitleAdicionar>+</TitleAdicionar>
-                  </CardAdicionar>
-                </List>
-              </Frame190>
-              <Line />
-            </Frame142>
-            {/* Refrigeração */}
-            <Frame142>
-              <Frame190>
-                <Title>Refrigeração</Title>
-                <List>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <CardAdicionar onClick={() => console.log('clicou')}>
-                    <TitleAdicionar>+</TitleAdicionar>
-                  </CardAdicionar>
-                </List>
-              </Frame190>
-              <Line />
-            </Frame142>
-            {/* Irradiação */}
-            <Frame142>
-              <Frame190>
-                <Title>Irradição</Title>
-                <List>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <CardAdicionar onClick={() => console.log('clicou')}>
-                    <TitleAdicionar>+</TitleAdicionar>
-                  </CardAdicionar>
-                </List>
-              </Frame190>
-              <Line />
-            </Frame142>
-            {/* Telemetria */}
-            <Frame142>
-              <Frame190>
-                <Title>Telemetria</Title>
-                <List>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <MiniCard>
-                    <Card>
-                      <TextCodigo>Cod</TextCodigo>
-                      <Title>Equipamento</Title>
-                      <Excluir>X</Excluir>
-                    </Card>
-                  </MiniCard>
-                  <CardAdicionar onClick={() => console.log('clicou')}>
-                    <TitleAdicionar>+</TitleAdicionar>
-                  </CardAdicionar>
-                </List>
-              </Frame190>
-            </Frame142>
-          </Frame145>
-        </ContainerAtivos>
+
+        <ListEquipamentos  setModalOpen={setModalOpen}/>
         
         <Buttons>
-
-        <DeleteButton onClick={() => console.log('deletar')}/>
+        <DeleteButton  onClick={() => console.log('deletar')}/>
         <CancelButton onClick={() => console.log('cancelar')}/>
         <SaveButton onClick={() => console.log('salvar')}/>
         </Buttons>
         </Content>
-
-
-
         </ContrainerMae>
+        {isModalOpen &&
+          <CardDesvincular onConfirmar={() => setModalOpen(false)} />  
+        }
       </Container>
     </div>
   );

@@ -1,12 +1,27 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-display: flex;
-width: 100%;
-padding-top: 7.5rem;
-flex-direction: column;
-align-items: center;
-gap: 0.625rem;
+  display: flex;
+  width: 100%;
+  padding-top: 7.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+
+  &.is-modal-active {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+    }
+  }
 `;
 
 export const ContrainerMae = styled.div`
