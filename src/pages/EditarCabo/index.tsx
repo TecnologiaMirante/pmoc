@@ -21,31 +21,60 @@ import { Dropdown } from "../../components/DropDown";
 import { TipoCaboList } from "../../dtos/TipoCaboDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { CaboDTO } from "../../dtos/lista-equipments";
+import { useEffect } from "react";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  tipo: string;
-  tamanho: number;
-  category: string;
-};
+
 
 export function EditarCabo() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:'Irradiação'
-    },
-  });
+    reset,
+  } = useForm<CaboDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
-  };
+  useEffect(() => {
+    getAntena()  
+    }, [])
+    
+    async function getAntena() {
+      try {
+        const res = await api.get('cabo/1');
+        reset({
+          dados_gerais: {
+            codigo: res.data.dados_gerais.codigo,
+            marca: res.data.dados_gerais.marca,
+            modelo: res.data.dados_gerais.modelo,
+          },
+          status: res.data.status,
+          tamanho:res.data.status,
+          tipo:res.data.status,
+          category: res.data.category,
+        });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  
+    const onSubmitUpdate = async (data: CaboDTO) => {
+      try {
+        const res = await api.put('/cabo/1', data);
+        console.log('atualizou', res)
+      } catch (error) {
+        console.log('error ao atualizar', error)
+      }
+    };
+  
+    const onDelete = async() => {
+      try {
+        const res = await api.delete("/cabo/1")
+        console.log('deletou', res.data)
+      } catch (error) {
+        console.log('Error ao apagar', error)
+      }
+    }
 
   return (
     <div>
@@ -60,7 +89,7 @@ export function EditarCabo() {
               <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -91,7 +120,7 @@ export function EditarCabo() {
               <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -107,7 +136,7 @@ export function EditarCabo() {
               <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -169,9 +198,9 @@ export function EditarCabo() {
             <Image src={quadrado} alt="quadrado" />
           </Card>
           <Buttons>
-            <DeleteButton onClick={() => console.log("excluir")}/>
+          <DeleteButton onClick={handleSubmit(onDelete)}/>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
         </Content>
       </ContainerCenter>

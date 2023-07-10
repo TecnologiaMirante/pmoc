@@ -1,6 +1,5 @@
 import { Header } from "../../components/Header";
 import {
-
   Buttons,
   Card,
   Container,
@@ -21,45 +20,72 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  status: string;
-  modelo: string;
-  corrente_maxima: number;
-  category: string;
-};
+import { DisjuntorDTO } from "../../dtos/lista-equipments";
+import { useEffect } from "react";
+import api from "../../api/api";
 
 export function EditarDisjuntor() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Elétrica"
-    },
-  });
+    reset,
+  } = useForm<DisjuntorDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getDisjuntor();
+  }, []);
+
+  async function getDisjuntor() {
+    try {
+      const res = await api.get("disjuntor/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        status: res.data.status,
+        corrente_maxima: res.data.corrente_maxima,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: DisjuntorDTO) => {
+    try {
+      const res = await api.put("/disjuntor/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/disjuntor/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
   };
 
   return (
     <div>
       <Header />
-     <Container>
-      <ContainerCenter>
-        <Title>Disjuntor</Title>
-        <Content>
-          <Card>
-            <ContainerForms>
-              <Form>
-              <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Disjuntor</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -70,9 +96,9 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -85,12 +111,12 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -101,12 +127,12 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -117,9 +143,9 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Corrente máxima</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Corrente máxima</Subtitle>
                   <Controller
                     control={control}
                     name="corrente_maxima"
@@ -133,9 +159,9 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -148,18 +174,18 @@ export function EditarDisjuntor() {
                       />
                     )}
                   />
-              </Form>
-            </ContainerForms>
-            <Image src={quadrado} alt="quadrado" />
-          </Card>
-          <Buttons>
-            <DeleteButton onClick={() => console.log("excluir")}/>
+                </Form>
+              </ContainerForms>
+              <Image src={quadrado} alt="quadrado" />
+            </Card>
+            <Buttons>
+              <DeleteButton onClick={handleSubmit(onDelete)} />
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
-        </Content>
-      </ContainerCenter>
-     </Container>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

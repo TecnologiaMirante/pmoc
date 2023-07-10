@@ -20,46 +20,44 @@ import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { Dropdown } from "../../components/DropDown";
 import { TipoCaboList } from "../../dtos/TipoCaboDTO";
 import { InputArea } from "../../components/Input";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  tipo: string;
-  tamanho: number;
-  category: string;
-};
+import { CaboDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
 export function CriarCabo() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<CaboDTO>({
     defaultValues: {
-      category:'Irradiação'
+      category: "Irradiação",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: CaboDTO) => {
     console.log(data);
+    try {
+      const res = await api.post("/cabo", data);
+      console.log("deu certo", res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
       <Header />
-     <Container>
-      <ContainerCenter>
-        <Title>Cabo</Title>
-        <Content>
-          <Card>
-            <ContainerForms>
-              <Form>
-              <Subtitle>Código</Subtitle>
+      <Container>
+        <ContainerCenter>
+          <Title>Cabo</Title>
+          <Content>
+            <Card>
+              <ContainerForms>
+                <Form>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -70,9 +68,9 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -85,12 +83,12 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -101,12 +99,12 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -117,9 +115,9 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Tipo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Tipo</Subtitle>
                   <Controller
                     control={control}
                     name="tipo"
@@ -132,9 +130,9 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Tamanho</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Tamanho</Subtitle>
                   <Controller
                     control={control}
                     name="tamanho"
@@ -148,9 +146,9 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -163,17 +161,17 @@ export function CriarCabo() {
                       />
                     )}
                   />
-              </Form>
-            </ContainerForms>
-            <Image src={quadrado} alt="quadrado" />
-          </Card>
-          <Buttons>
+                </Form>
+              </ContainerForms>
+              <Image src={quadrado} alt="quadrado" />
+            </Card>
+            <Buttons>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmit)} />
             </Buttons>
-        </Content>
-      </ContainerCenter>
-     </Container>
+          </Content>
+        </ContainerCenter>
+      </Container>
     </div>
   );
 }

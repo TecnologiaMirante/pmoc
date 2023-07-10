@@ -21,31 +21,61 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { useEffect } from "react";
+import { NobreakDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  status: string;
-  modelo: string;
-  tensao_entrada: number;
-  tensao_saida: number;
-  category: string;
-};
+
 
 export function EditarNobreak() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Elétrica"
-    },
-  });
+    reset,
+  } = useForm<NobreakDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+
+  useEffect(() => {
+  getNobreak()  
+  }, [])
+  
+  async function getNobreak() {
+    try {
+      const res = await api.get('nobreak/1');
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        status: res.data.status,
+        tensao_entrada:res.data.tensao_entrada,
+        tensao_saida:res.data.tensao_saida,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onSubmitUpdate = async (data: NobreakDTO) => {
+    try {
+      const res = await api.put('/nobreak/1', data);
+      console.log('atualizou', res)
+    } catch (error) {
+      console.log('error ao atualizar', error)
+    }
   };
+
+  const onDelete = async() => {
+    try {
+      const res = await api.delete("/nobreak/1")
+      console.log('deletou', res.data)
+    } catch (error) {
+      console.log('Error ao apagar', error)
+    }
+  }
 
   return (
     <div>
@@ -60,7 +90,7 @@ export function EditarNobreak() {
               <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -91,7 +121,7 @@ export function EditarNobreak() {
               <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -107,7 +137,7 @@ export function EditarNobreak() {
               <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -171,8 +201,9 @@ export function EditarNobreak() {
           </Card>
           <Buttons>
             <DeleteButton onClick={() => console.log("excluir")}/>
+            <DeleteButton onClick={handleSubmit(onDelete)}/>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
         </Content>
       </ContainerCenter>

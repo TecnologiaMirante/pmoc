@@ -8,6 +8,13 @@ export type DPSDTO = {
     "category": string;
 }
 
+export type DisjuntorDTO = {
+    "dados_gerais": DadosGerais;
+    "status": string;
+    "corrente_maxima": number;
+    "category": string;
+}
+
 export type AntenaDTO = {
     "dados_gerais": DadosGerais;
     "status": string;
@@ -30,7 +37,6 @@ export type ArCondionadoDTO = {
 export type CaboDTO = {
     "dados_gerais": DadosGerais;
     "status": string;
-    "modelo": string;
     "tipo": string;
     "tamanho": number;
     "category": string;
@@ -42,11 +48,6 @@ export type CombinadoDTO = {
     "category": string;
 }
 
-export type DisjuntosDTO = {
-    "dados_gerais": DadosGerais;
-    "corrente_maxima": number;
-    "category": string;
-}
 
 export type ExaustorDTO = {
     "dados_gerais": DadosGerais;

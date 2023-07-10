@@ -1,7 +1,6 @@
 import {  styled } from "styled-components";
 
 
-
 export const ContainerAvo = styled.div`
   padding-top: 7.8125rem;
   width: 100%;

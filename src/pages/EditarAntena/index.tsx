@@ -21,34 +21,64 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { TipoAntenaList } from "../../dtos/TipoAntenaDTO";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { AntenaDTO } from "../../dtos/lista-equipments";
+import { useEffect } from "react";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  gain: string;
-  fendas: number;
-  tipo: string;
-  vr: string;
-  posicao_torre: string;
-  category: string;
-};
+
 
 export function EditarAntena() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:'Irradiação'
-    },
-  });
+    reset,
+  } = useForm<AntenaDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+
+  useEffect(() => {
+  getAntena()  
+  }, [])
+  
+  async function getAntena() {
+    try {
+      const res = await api.get('antena/1');
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        posicao_torre: res.data.posicao_torre,
+        vr: res.data.vr,
+        tipo: res.data.tipo,
+        status: res.data.status,
+        gain: res.data.gain,
+        fendas: res.data.fendas,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onSubmitUpdate = async (data: AntenaDTO) => {
+    try {
+      const res = await api.put('/antena/1', data);
+      console.log('atualizou', res)
+    } catch (error) {
+      console.log('error ao atualizar', error)
+    }
   };
+
+  const onDelete = async() => {
+    try {
+      const res = await api.delete("/antena/1")
+      console.log('deletou', res.data)
+    } catch (error) {
+      console.log('Error ao apagar', error)
+    }
+  }
 
   return (
     <>
@@ -64,7 +94,7 @@ export function EditarAntena() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -97,7 +127,7 @@ export function EditarAntena() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -114,7 +144,7 @@ export function EditarAntena() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -232,9 +262,9 @@ export function EditarAntena() {
             </Card>
 
             <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
+              <DeleteButton onClick={handleSubmit(onDelete)}/>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

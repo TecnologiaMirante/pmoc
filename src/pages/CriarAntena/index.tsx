@@ -20,33 +20,29 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { TipoAntenaList } from "../../dtos/TipoAntenaDTO";
 import { InputArea } from "../../components/Input";
+import { AntenaDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  gain: string;
-  fendas: number;
-  tipo: string;
-  vr: string;
-  posicao_torre: string;
-  category: string;
-};
 
 export function CriarAntena() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<AntenaDTO>({
     defaultValues: {
       category: "Irradiação",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: AntenaDTO) => {
     console.log(data);
+    try {
+      const res = await api.post('/antena', data)
+      console.log('deu certo', res)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -63,7 +59,7 @@ export function CriarAntena() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -96,7 +92,7 @@ export function CriarAntena() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -113,7 +109,7 @@ export function CriarAntena() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -232,7 +228,7 @@ export function CriarAntena() {
 
             <Buttons>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmit)} />
             </Buttons>
           </Content>
         </ContainerCenter>

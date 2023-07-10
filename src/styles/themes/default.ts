@@ -4,6 +4,7 @@ export const defalutTheme = {
   'main-blue': '#3A9DF9',
   'text-color': '#1D4ED8',
   'text-ativo': '#020617',
+  'text-descricao': '#1E1E1E',
   'bg-blue': '#EFF6FF',
   'box': '#E0EBFF',
   'cardAdd':'#F1F5F9',

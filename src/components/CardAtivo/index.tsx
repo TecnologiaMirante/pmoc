@@ -24,7 +24,6 @@ export function CardAtivo() {
             <CodAtivo>NBR001</CodAtivo>
             <TitleEstacao>Estação Cururupu</TitleEstacao>
           </TitleElementos>
-
           <ContainerInfo>
             <DetalhesEquipamento>
               <Title>Marca</Title>

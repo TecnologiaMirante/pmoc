@@ -20,30 +20,56 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { DPSDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
+import { useEffect } from "react";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  status: string;
-  modelo: string;
-  corrente_maxima: number;
-  category: string;
-};
 
 export function EditarDPS() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Elétrica"
-    },
-  });
+    reset,
+  } = useForm<DPSDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
-  };
+    
+    async function getAntena() {
+      try {
+        const res = await api.get('antena/1');
+        reset({
+          dados_gerais: {
+            codigo: res.data.dados_gerais.codigo,
+            marca: res.data.dados_gerais.marca,
+            modelo: res.data.dados_gerais.modelo,
+          },
+          classe:res.data.classe,
+          corrente_maxima:res.data.corrente_maxima,
+          status:res.data.status,
+          category: res.data.category,
+        });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  
+    const onSubmitUpdate = async (data: DPSDTO) => {
+      try {
+        const res = await api.put('/DPS/1', data);
+        console.log('atualizou', res)
+      } catch (error) {
+        console.log('error ao atualizar', error)
+      }
+    };
+  
+    const onDelete = async() => {
+      try {
+        const res = await api.delete("/DPS/1")
+        console.log('deletou', res.data)
+      } catch (error) {
+        console.log('Error ao apagar', error)
+      }
+    }
 
   return (
     <div>
@@ -58,7 +84,7 @@ export function EditarDPS() {
                 <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -89,7 +115,7 @@ export function EditarDPS() {
                 <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -105,7 +131,7 @@ export function EditarDPS() {
                 <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -152,9 +178,9 @@ export function EditarDPS() {
               <Image src={quadrado} alt="quadrado" />
             </Card>
             <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
+            <DeleteButton onClick={handleSubmit(onDelete)}/>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

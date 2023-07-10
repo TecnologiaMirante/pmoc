@@ -20,28 +20,55 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  category: string
-};
+import { ExaustorDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
+import { useEffect } from "react";
 
 export function EditarExaustor() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Refrigeração"
-    },
-  });
+    reset,
+  } = useForm<ExaustorDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getExaustor();
+  }, []);
+
+  async function getExaustor() {
+    try {
+      const res = await api.get("exaustor/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        status: res.data.status,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: ExaustorDTO) => {
+    try {
+      const res = await api.put("/exaustor/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/exaustor/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
   };
 
   return (
@@ -54,10 +81,10 @@ export function EditarExaustor() {
             <Card>
               <ContainerForms>
                 <Form>
-                <Subtitle>Código</Subtitle>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -70,10 +97,10 @@ export function EditarExaustor() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Marca</Subtitle>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -86,10 +113,10 @@ export function EditarExaustor() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Modelo</Subtitle>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -102,7 +129,7 @@ export function EditarExaustor() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -117,7 +144,7 @@ export function EditarExaustor() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -135,9 +162,9 @@ export function EditarExaustor() {
               <Image src={quadrado} alt="quadrado" />
             </Card>
             <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
+              <DeleteButton onClick={handleSubmit(onDelete)} />
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

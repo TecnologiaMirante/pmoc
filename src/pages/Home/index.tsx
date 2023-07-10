@@ -1,21 +1,17 @@
 import { CardAtivo } from "../../components/CardAtivo";
 import { CardFilter } from "../../components/CardFilter";
+import { CardManutencao } from "../../components/CardManutencao";
+import { ContainerDocumentos } from "../../components/ContainerDocumentos";
 import { Header } from "../../components/Header";
 import {
   ContainerAvo,
-  ContainerAnexos,
   ContainerFilho,
-  ContainerImage,
   ContainerPai,
-  DocAutor,
-  Image,
   SubPages,
-  InfoDocs,
-  NomeDoc,
   Title,
   TitleInfo,
 } from "./styles";
-import quadrado from "../../assets/quadrado.png";
+
 
 export function Home() {
   return (
@@ -23,7 +19,7 @@ export function Home() {
       <Header />
       <ContainerAvo>
         <ContainerPai>
-        <Title>15 Documentos</Title>
+        <Title>5 Documentos</Title>
           <ContainerFilho>
             
             <CardAtivo />
@@ -33,52 +29,10 @@ export function Home() {
               <TitleInfo>Documentos</TitleInfo>
             </SubPages>
 
-            <ContainerAnexos>
-              <ContainerImage>
-                <Image src={quadrado} alt="quadrado" />
-                <InfoDocs>
-                  <NomeDoc>Nf-e</NomeDoc>
-                  <DocAutor>Tec. Ramon</DocAutor>
-                  <DocAutor>12/06/2023</DocAutor>
-                </InfoDocs>
-              </ContainerImage>
+            <CardManutencao />
 
-              <ContainerImage>
-                <Image src={quadrado} alt="quadrado" />
-                <InfoDocs>
-                  <NomeDoc>Nf-e</NomeDoc>
-                  <DocAutor>Tec. Ramon</DocAutor>
-                  <DocAutor>12/06/2023</DocAutor>
-                </InfoDocs>
-              </ContainerImage>
+            {/* <ContainerDocumentos /> */}
 
-              <ContainerImage>
-                <Image src={quadrado} alt="quadrado" />
-                <InfoDocs>
-                  <NomeDoc>Nf-e</NomeDoc>
-                  <DocAutor>Tec. Ramon</DocAutor>
-                  <DocAutor>12/06/2023</DocAutor>
-                </InfoDocs>
-              </ContainerImage>
-
-              <ContainerImage>
-                <Image src={quadrado} alt="quadrado" />
-                <InfoDocs>
-                  <NomeDoc>Nf-e</NomeDoc>
-                  <DocAutor>Tec. Ramon</DocAutor>
-                  <DocAutor>12/06/2023</DocAutor>
-                </InfoDocs>
-              </ContainerImage>
-
-              <ContainerImage>
-                <Image src={quadrado} alt="quadrado" />
-                <InfoDocs>
-                  <NomeDoc>Nf-e</NomeDoc>
-                  <DocAutor>Tec. Ramon</DocAutor>
-                  <DocAutor>12/06/2023</DocAutor>
-                </InfoDocs>
-              </ContainerImage>
-            </ContainerAnexos>
           </ContainerFilho>
         </ContainerPai>
         <CardFilter></CardFilter>

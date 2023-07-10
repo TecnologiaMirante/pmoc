@@ -19,30 +19,30 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
+import { ArCondionadoDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  potencia: number;
-  tensao: number;
-  category: string;
-};
+
 
 export function CriarArcondicionado() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<ArCondionadoDTO>({
     defaultValues: {
       category:'Refrigeração'
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: ArCondionadoDTO) => {
     console.log(data);
+    try {
+      const res = await api.post('/arcondicionado', data)
+      console.log('deu certo', res)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -58,7 +58,7 @@ export function CriarArcondicionado() {
                 <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -89,7 +89,7 @@ export function CriarArcondicionado() {
                 <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -105,7 +105,7 @@ export function CriarArcondicionado() {
                 <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -168,7 +168,7 @@ export function CriarArcondicionado() {
             </Card>
             <Buttons>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmit)} />
             </Buttons>
           </Content>
         </ContainerCenter>

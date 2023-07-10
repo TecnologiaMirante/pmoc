@@ -18,7 +18,7 @@ export function CardDesvincular({ onConfirmar }: Props) {
   return (
     <Container>
       <ContainerTitle>
-        <Title>Desvincluar equipamento</Title>
+        <Title>Desvincular equipamento</Title>
         <SubTitle>Tem certeza que deseja excluir o equipamento?</SubTitle>
       </ContainerTitle>
       <ContainerButtons>
