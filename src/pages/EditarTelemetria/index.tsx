@@ -20,31 +20,56 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  corrente_maxima: number;
-  category: string;
-};
+import { useEffect } from "react";
+import api from "../../api/api";
+import { TelemetriaDTO } from "../../dtos/lista-equipments";
 
 export function EditarTelemetria() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Telemetria"
-    },
-  });
+    reset,
+  } = useForm<TelemetriaDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getTelemetria();
+  }, []);
+
+  async function getTelemetria() {
+    try {
+      const res = await api.get("telemetria/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        status: res.data.status,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: TelemetriaDTO) => {
+    try {
+      const res = await api.put("/telemetria/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
   };
 
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/telemetria/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
+  };
 
   return (
     <div>
@@ -56,10 +81,10 @@ export function EditarTelemetria() {
             <Card>
               <ContainerForms>
                 <Form>
-                <Subtitle>Código</Subtitle>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -72,10 +97,10 @@ export function EditarTelemetria() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Marca</Subtitle>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -88,10 +113,10 @@ export function EditarTelemetria() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Modelo</Subtitle>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -104,7 +129,7 @@ export function EditarTelemetria() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -119,7 +144,7 @@ export function EditarTelemetria() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -137,9 +162,9 @@ export function EditarTelemetria() {
               <Image src={quadrado} alt="quadrado" />
             </Card>
             <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
-              <CancelButton onClick={() => console.log("cancelar")}/>
-              <SaveButton onClick={() => console.log("salvou")} />
+              <DeleteButton onClick={handleSubmit(onDelete)} />
+              <CancelButton onClick={() => console.log("cancelar")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

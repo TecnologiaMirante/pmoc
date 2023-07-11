@@ -20,29 +20,56 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  status: string;
-  modelo: string;
-  quantidade_portas: number;
-  category: string;
-};
+import { SwitchDTO } from "../../dtos/lista-equipments";
+import { useEffect } from "react";
+import api from "../../api/api";
 
 export function EditarSwitch() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category: "Telemetria",
-    },
-  });
+    reset,
+  } = useForm<SwitchDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getSwitch();
+  }, []);
+
+  async function getSwitch() {
+    try {
+      const res = await api.get("switch/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        quantidade_portas: res.data.quantidade_portas,
+        status: res.data.status,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: SwitchDTO) => {
+    try {
+      const res = await api.put("/switch/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/switch/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
   };
 
   return (
@@ -58,7 +85,7 @@ export function EditarSwitch() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -89,7 +116,7 @@ export function EditarSwitch() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -105,7 +132,7 @@ export function EditarSwitch() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -152,9 +179,9 @@ export function EditarSwitch() {
               <Image src={quadrado} alt="quadrado" />
             </Card>
             <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")} />
+              <DeleteButton onClick={handleSubmit(onDelete)} />
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

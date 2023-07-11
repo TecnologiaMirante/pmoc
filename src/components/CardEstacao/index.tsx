@@ -1,13 +1,22 @@
-import { EstacaoContainer, NomeEstacao } from "./styles";
+import { Container, Frame139, Frame140, Frame61, NomeEstacao, Image } from "./styles";
 import quadrado from '../../assets/quadrado.png';
 
+type Props = {
+    title: string;
+    id?:number;
+}
 
-export function CardEstacao() {
+export function CardEstacao({id, title}:Props) {
     return(
-        <EstacaoContainer>
-            <img src={quadrado} alt="quadrado"/>
-
-            <NomeEstacao>Nova Estação</NomeEstacao>
-        </EstacaoContainer>
+        <Container>
+            <Frame140>
+                <Frame139>
+                    <Image src={quadrado} alt="quadrado"/>
+                    <Frame61>
+                        <NomeEstacao>{title}</NomeEstacao>
+                    </Frame61>
+                </Frame139>
+            </Frame140>
+        </Container>
     );
 }

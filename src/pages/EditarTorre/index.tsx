@@ -21,31 +21,58 @@ import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { AterramentoStatusList } from "../../dtos/AterramentoDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  tipo_estrutura: string;
-  altura: number;
-  aterramento: string;
-  category: string;
-};
+import { useEffect } from "react";
+import api from "../../api/api";
+import { TorreDTO } from "../../dtos/lista-equipments";
 
 export function EditarTorre() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Irradiação"
-    },
-  });
+    reset,
+  } = useForm<TorreDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getTorre();
+  }, []);
+
+  async function getTorre() {
+    try {
+      const res = await api.get("torre/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        altura: res.data.altura,
+        aterramento: res.data.aterramento,
+        tipo_estrutura: res.data.tipo_estrutura,
+        status: res.data.status,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: TorreDTO) => {
+    try {
+      const res = await api.put("/torre/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/torre/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
   };
 
   return (
@@ -58,10 +85,10 @@ export function EditarTorre() {
             <Card>
               <ContainerForms>
                 <Form>
-                <Subtitle>Código</Subtitle>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -74,7 +101,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -89,10 +116,10 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Marca</Subtitle>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -105,7 +132,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -121,7 +148,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Tipo da estrutura</Subtitle>
+                  <Subtitle>Tipo da estrutura</Subtitle>
                   <Controller
                     control={control}
                     name="tipo_estrutura"
@@ -137,7 +164,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Altura</Subtitle>
+                  <Subtitle>Altura</Subtitle>
                   <Controller
                     control={control}
                     name="altura"
@@ -153,10 +180,10 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Modelo</Subtitle>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -169,7 +196,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Aterramento</Subtitle>
+                  <Subtitle>Aterramento</Subtitle>
                   <Controller
                     control={control}
                     name="aterramento"
@@ -183,7 +210,7 @@ export function EditarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -200,9 +227,9 @@ export function EditarTorre() {
               <Image src={quadrado} alt="quadrado" />
             </Card>
             <Buttons>
-              <DeleteButton onClick={() => console.log("cancelar")}/>
+              <DeleteButton onClick={handleSubmit(onDelete)} />
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

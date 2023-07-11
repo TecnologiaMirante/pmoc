@@ -1,4 +1,5 @@
-import { CardAtivo } from "../../components/CardAtivo";
+import { CardAtivoNobreak } from "../../components/CardAtivoNobreak";
+import { CardEstacao } from "../../components/CardEstacao";
 import { CardFilter } from "../../components/CardFilter";
 import { CardManutencao } from "../../components/CardManutencao";
 import { ContainerDocumentos } from "../../components/ContainerDocumentos";
@@ -21,18 +22,14 @@ export function Home() {
         <ContainerPai>
         <Title>5 Documentos</Title>
           <ContainerFilho>
-            
-            <CardAtivo />
-
+            <CardAtivoNobreak />
             <SubPages>
               <TitleInfo>Histórico de Manutenções</TitleInfo>
               <TitleInfo>Documentos</TitleInfo>
             </SubPages>
-
+            
             <CardManutencao />
-
-            {/* <ContainerDocumentos /> */}
-
+            <ContainerDocumentos />
           </ContainerFilho>
         </ContainerPai>
         <CardFilter></CardFilter>

@@ -20,31 +20,29 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { AterramentoStatusList } from "../../dtos/AterramentoDTO";
 import { InputArea } from "../../components/Input";
+import { TorreDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  tipo_estrutura: string;
-  altura: number;
-  aterramento: string;
-  category: string;
-};
 
 export function CriarTorre() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<TorreDTO>({
     defaultValues: {
-      category:"Irradiação"
+      category: "Irradiação",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: TorreDTO) => {
     console.log(data);
+    try {
+      const res = await api.post('/torre', data)
+      console.log('deu certo', res)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -57,10 +55,10 @@ export function CriarTorre() {
             <Card>
               <ContainerForms>
                 <Form>
-                <Subtitle>Código</Subtitle>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -73,7 +71,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Status</Subtitle>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -88,10 +86,10 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Marca</Subtitle>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -104,7 +102,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -120,7 +118,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Tipo da estrutura</Subtitle>
+                  <Subtitle>Tipo da estrutura</Subtitle>
                   <Controller
                     control={control}
                     name="tipo_estrutura"
@@ -136,7 +134,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Altura</Subtitle>
+                  <Subtitle>Altura</Subtitle>
                   <Controller
                     control={control}
                     name="altura"
@@ -152,10 +150,10 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Modelo</Subtitle>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -168,7 +166,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Aterramento</Subtitle>
+                  <Subtitle>Aterramento</Subtitle>
                   <Controller
                     control={control}
                     name="aterramento"
@@ -182,7 +180,7 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                <Subtitle>Categoria</Subtitle>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -200,7 +198,7 @@ export function CriarTorre() {
             </Card>
             <Buttons>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmit)} />
             </Buttons>
           </Content>
         </ContainerCenter>

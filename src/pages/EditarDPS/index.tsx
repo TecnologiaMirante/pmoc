@@ -33,8 +33,11 @@ export function EditarDPS() {
     reset,
   } = useForm<DPSDTO>();
 
-    
-    async function getAntena() {
+  useEffect(() => {
+    getDPS()
+  }, [])
+  
+    async function getDPS() {
       try {
         const res = await api.get('antena/1');
         reset({

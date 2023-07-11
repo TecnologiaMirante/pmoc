@@ -48,7 +48,6 @@ export type CombinadoDTO = {
     "category": string;
 }
 
-
 export type ExaustorDTO = {
     "dados_gerais": DadosGerais;
     "status": string;
@@ -92,6 +91,7 @@ export type SwitchDTO = {
 
 export type TelemetriaDTO = {
     "dados_gerais": DadosGerais;
+    "status": string;
     "category": string;
 }
 
@@ -100,7 +100,7 @@ export type TorreDTO = {
     "status": string;
     "tipo_estrutura": string;
     "altura": number;
-    "aterramento": boolean;
+    "aterramento": string;
     "category": string;
 }
 

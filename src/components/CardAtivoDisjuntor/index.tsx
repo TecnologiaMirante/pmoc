@@ -13,15 +13,15 @@ import {
 } from "./styles";
 import quadrado from "../../assets/quadrado.png";
 
-export function CardAtivo() {
+export function CardAtivoDisjuntor() {
   return (
     <>
       <ContainerCard>
        <SuperContainer>
        <InfoEquipamento>
           <TitleElementos>
-            <Title>NoBreak:</Title>
-            <CodAtivo>NBR001</CodAtivo>
+            <Title>Disjuntor:</Title>
+            <CodAtivo>DIS 001</CodAtivo>
             <TitleEstacao>Estação Cururupu</TitleEstacao>
           </TitleElementos>
           <ContainerInfo>
@@ -34,12 +34,8 @@ export function CardAtivo() {
               <Subtitle>Modelo X</Subtitle>
             </DetalhesEquipamento>
             <DetalhesEquipamento>
-              <Title>Tensão Entrada</Title>
-              <Subtitle>320v</Subtitle>
-            </DetalhesEquipamento>
-            <DetalhesEquipamento>
-              <Title>Tensão Saída</Title>
-              <Subtitle>220v</Subtitle>
+              <Title>Corrente Máxima</Title>
+              <Subtitle>310V</Subtitle>
             </DetalhesEquipamento>
 
           </ContainerInfo>

@@ -20,32 +20,60 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import { ParabolicaDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
+import { useEffect } from "react";
 
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  diametro: number;
-  satelite: string;
-  receptor: string;
-  category: string;
-};
 
 export function EditarParabolica() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Irradiação"
-    },
-  });
+  } = useForm<ParabolicaDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
-  };
+  useEffect(() => {
+    getParabolica()  
+    }, [])
+    
+    async function getParabolica() {
+      try {
+        const res = await api.get('parabolica/1');
+        reset({
+          dados_gerais: {
+            codigo: res.data.dados_gerais.codigo,
+            marca: res.data.dados_gerais.marca,
+            modelo: res.data.dados_gerais.modelo,
+          },
+          diametro:res.data.diametro,
+          receptor:res.data.receptor,
+          satelite:res.data.satelite,
+          status: res.data.status,
+          category: res.data.category,
+        });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  
+    const onSubmitUpdate = async (data: ParabolicaDTO) => {
+      try {
+        const res = await api.put('/parabolica/1', data);
+        console.log('atualizou', res)
+      } catch (error) {
+        console.log('error ao atualizar', error)
+      }
+    };
+  
+    const onDelete = async() => {
+      try {
+        const res = await api.delete("/parabolica/1")
+        console.log('deletou', res.data)
+      } catch (error) {
+        console.log('Error ao apagar', error)
+      }
+    }
 
   return (
     <>
@@ -54,13 +82,13 @@ export function EditarParabolica() {
         <ContainerCenter>
           <Title>Parabólica</Title>
           <Content>
-          <Card>
-            <ContainerForms>
-              <Form>
-              <Subtitle>Código</Subtitle>
+            <Card>
+              <ContainerForms>
+                <Form>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -71,9 +99,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -86,12 +114,12 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -102,12 +130,12 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -118,9 +146,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Diametro</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Diametro</Subtitle>
                   <Controller
                     control={control}
                     name="diametro"
@@ -134,9 +162,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Satélite</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Satélite</Subtitle>
                   <Controller
                     control={control}
                     name="satelite"
@@ -150,9 +178,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Receptor</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Receptor</Subtitle>
                   <Controller
                     control={control}
                     name="receptor"
@@ -166,9 +194,9 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Categoria</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
                     name="category"
@@ -181,14 +209,14 @@ export function EditarParabolica() {
                       />
                     )}
                   />
-              </Form>
-            </ContainerForms>
-            <Image src={quadrado} alt="quadrado" />
-          </Card>
-          <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
+                </Form>
+              </ContainerForms>
+              <Image src={quadrado} alt="quadrado" />
+            </Card>
+            <Buttons>
+            <DeleteButton onClick={handleSubmit(onDelete)}/>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

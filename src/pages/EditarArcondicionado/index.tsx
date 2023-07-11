@@ -34,12 +34,12 @@ export function EditarArcondicionado() {
   } = useForm<ArCondionadoDTO>();
 
   useEffect(() => {
-    getAntena()  
+    getArCondicionado()  
     }, [])
     
-    async function getAntena() {
+    async function getArCondicionado() {
       try {
-        const res = await api.get('antena/1');
+        const res = await api.get('arcondicionado/1');
         reset({
           dados_gerais: {
             codigo: res.data.dados_gerais.codigo,

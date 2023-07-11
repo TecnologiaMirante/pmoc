@@ -33,12 +33,12 @@ export function EditarCombinador() {
   } = useForm<CombinadoDTO>();
 
   useEffect(() => {
-    getAntena();
+    getCombinador();
   }, []);
 
-  async function getAntena() {
+  async function getCombinador() {
     try {
-      const res = await api.get("antena/1");
+      const res = await api.get("combinador/1");
       reset({
         dados_gerais: {
           codigo: res.data.dados_gerais.codigo,

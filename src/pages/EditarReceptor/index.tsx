@@ -20,33 +20,60 @@ import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  channel: number;
-  frequency: number;
-  symbol_rate: number;
-  transmissor: string;
-  parabolica: string;
-  category: string;
-};
+import { ReceptorDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
+import { useEffect } from "react";
 
 export function EditarReceptor() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      category:"Irradiação"
-    },
-  });
+    reset,
+  } = useForm<ReceptorDTO>();
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  useEffect(() => {
+    getReceptor();
+  }, []);
+
+  async function getReceptor() {
+    try {
+      const res = await api.get("receptor/1");
+      reset({
+        dados_gerais: {
+          codigo: res.data.dados_gerais.codigo,
+          marca: res.data.dados_gerais.marca,
+          modelo: res.data.dados_gerais.modelo,
+        },
+        channel: res.data.channel,
+        frequency: res.data.frequency,
+        parabolica: res.data.parabolica,
+        symbol_rate: res.data.symbol_rate,
+        transmissor: res.data.transmissor,
+        status: res.data.status,
+        category: res.data.category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const onSubmitUpdate = async (data: ReceptorDTO) => {
+    try {
+      const res = await api.put("/receptor/1", data);
+      console.log("atualizou", res);
+    } catch (error) {
+      console.log("error ao atualizar", error);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      const res = await api.delete("/receptor/1");
+      console.log("deletou", res.data);
+    } catch (error) {
+      console.log("Error ao apagar", error);
+    }
   };
 
   return (
@@ -56,13 +83,13 @@ export function EditarReceptor() {
         <ContainerCenter>
           <Title>Receptor</Title>
           <Content>
-          <Card>
-            <ContainerForms>
-              <Form>
-              <Subtitle>Código</Subtitle>
+            <Card>
+              <ContainerForms>
+                <Form>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -73,9 +100,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -88,12 +115,12 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -104,12 +131,12 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -120,9 +147,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Channel</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Channel</Subtitle>
                   <Controller
                     control={control}
                     name="channel"
@@ -136,9 +163,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Frequência</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Frequência</Subtitle>
                   <Controller
                     control={control}
                     name="frequency"
@@ -152,9 +179,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Transmissor</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Transmissor</Subtitle>
                   <Controller
                     control={control}
                     name="transmissor"
@@ -168,9 +195,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Parabólica</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Parabólica</Subtitle>
                   <Controller
                     control={control}
                     name="symbol_rate"
@@ -184,9 +211,9 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Symbol rate</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Symbol rate</Subtitle>
                   <Controller
                     control={control}
                     name="symbol_rate"
@@ -200,8 +227,8 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
+                </Form>
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
@@ -215,14 +242,14 @@ export function EditarReceptor() {
                       />
                     )}
                   />
-              </Form>
-            </ContainerForms>
-            <Image src={quadrado} alt="quadrado" />
-          </Card>
-          <Buttons>
-              <DeleteButton onClick={() => console.log("excluir")}/>
+                </Form>
+              </ContainerForms>
+              <Image src={quadrado} alt="quadrado" />
+            </Card>
+            <Buttons>
+              <DeleteButton onClick={handleSubmit(onDelete)} />
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmitUpdate)} />
             </Buttons>
           </Content>
         </ContainerCenter>

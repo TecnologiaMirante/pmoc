@@ -19,33 +19,28 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Dropdown } from "../../components/DropDown";
 import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
-
-type FormData = {
-  codigo: string;
-  marca: string;
-  modelo: string;
-  status: string;
-  channel: number;
-  frequency: number;
-  symbol_rate: number;
-  transmissor: string;
-  parabolica: string;
-  category: string;
-};
+import { ReceptorDTO } from "../../dtos/lista-equipments";
+import api from "../../api/api";
 
 export function CriarReceptor() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<ReceptorDTO>({
     defaultValues: {
-      category:"Irradiação"
+      category: "Irradiação",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: ReceptorDTO) => {
     console.log(data);
+    try {
+      const res = await api.post("/antena", data);
+      console.log("deu certo", res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -55,13 +50,13 @@ export function CriarReceptor() {
         <ContainerCenter>
           <Title>Receptor</Title>
           <Content>
-          <Card>
-            <ContainerForms>
-              <Form>
-              <Subtitle>Código</Subtitle>
+            <Card>
+              <ContainerForms>
+                <Form>
+                  <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="codigo"
+                    name="dados_gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -72,9 +67,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Status</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Status</Subtitle>
                   <Controller
                     control={control}
                     name="status"
@@ -87,12 +82,12 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Marca</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="marca"
+                    name="dados_gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -103,12 +98,12 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Modelo</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="modelo"
+                    name="dados_gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -119,9 +114,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Channel</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Channel</Subtitle>
                   <Controller
                     control={control}
                     name="channel"
@@ -135,9 +130,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Frequência</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Frequência</Subtitle>
                   <Controller
                     control={control}
                     name="frequency"
@@ -151,9 +146,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Transmissor</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Transmissor</Subtitle>
                   <Controller
                     control={control}
                     name="transmissor"
@@ -167,9 +162,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Parabólica</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Parabólica</Subtitle>
                   <Controller
                     control={control}
                     name="symbol_rate"
@@ -183,9 +178,9 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
-              <Subtitle>Symbol rate</Subtitle>
+                </Form>
+                <Form>
+                  <Subtitle>Symbol rate</Subtitle>
                   <Controller
                     control={control}
                     name="symbol_rate"
@@ -199,8 +194,8 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-              <Form>
+                </Form>
+                <Form>
                   <Subtitle>Categoria</Subtitle>
                   <Controller
                     control={control}
@@ -214,13 +209,13 @@ export function CriarReceptor() {
                       />
                     )}
                   />
-              </Form>
-            </ContainerForms>
-            <Image src={quadrado} alt="quadrado" />
-          </Card>
-          <Buttons>
+                </Form>
+              </ContainerForms>
+              <Image src={quadrado} alt="quadrado" />
+            </Card>
+            <Buttons>
               <CancelButton onClick={() => console.log("cancelar")} />
-              <SaveButton onClick={() => console.log("salvou")} />
+              <SaveButton onClick={handleSubmit(onSubmit)} />
             </Buttons>
           </Content>
         </ContainerCenter>

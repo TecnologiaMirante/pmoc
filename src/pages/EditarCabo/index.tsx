@@ -36,10 +36,10 @@ export function EditarCabo() {
   } = useForm<CaboDTO>();
 
   useEffect(() => {
-    getAntena()  
+    getCabo()  
     }, [])
     
-    async function getAntena() {
+    async function getCabo() {
       try {
         const res = await api.get('cabo/1');
         reset({

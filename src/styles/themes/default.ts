@@ -1,5 +1,5 @@
 export const defalutTheme = {
-  white: "#fff",
+  'white': "#fff",
 
   'main-blue': '#3A9DF9',
   'text-color': '#1D4ED8',
