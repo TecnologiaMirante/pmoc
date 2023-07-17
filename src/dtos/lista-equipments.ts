@@ -1,7 +1,7 @@
 import { DadosGerais } from "./DadosGearaisDTO"
 
 export type DPSDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "corrente_maxima": number;
     "classe": string;
@@ -9,14 +9,14 @@ export type DPSDTO = {
 }
 
 export type DisjuntorDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "corrente_maxima": number;
     "category": string;
 }
 
 export type AntenaDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "gain": string;
     "fendas": number;
@@ -27,7 +27,7 @@ export type AntenaDTO = {
 }
 
 export type ArCondionadoDTO = {
-    "dados_gerais": DadosGerais,
+    "gerais":DadosGerais;
     "status": string;
     "potencia": number;
     "tensao": number;
@@ -35,7 +35,7 @@ export type ArCondionadoDTO = {
 }
 
 export type CaboDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "tipo": string;
     "tamanho": number;
@@ -43,19 +43,19 @@ export type CaboDTO = {
 }
 
 export type CombinadoDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "category": string;
 }
 
 export type ExaustorDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "category": string
 }
 
 export type NobreakDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "tensao_entrada": number;
     "tensao_saida": number;
@@ -63,7 +63,7 @@ export type NobreakDTO = {
 }
 
 export type ParabolicaDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "diametro": number;
     "satelite": string;
@@ -72,7 +72,7 @@ export type ParabolicaDTO = {
 }
 
 export type ReceptorDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "channel": number;
     "frequency": number;
@@ -83,20 +83,20 @@ export type ReceptorDTO = {
 }
 
 export type SwitchDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "quantidade_portas": number;
     "category": string;
 }
 
 export type TelemetriaDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "category": string;
 }
 
 export type TorreDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "tipo_estrutura": string;
     "altura": number;
@@ -105,7 +105,7 @@ export type TorreDTO = {
 }
 
 export type TransmissorDTO = {
-    "dados_gerais": DadosGerais;
+    "gerais":DadosGerais;
     "status": string;
     "programmed_power": number;
     "canal_fisico": number;

@@ -30,7 +30,7 @@ export function CriarParabolica() {
     formState: { errors },
   } = useForm<ParabolicaDTO>({
     defaultValues: {
-      category: "Irradiação",
+      category: "IRRADIACAO",
     },
   });
 
@@ -57,7 +57,7 @@ export function CriarParabolica() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.codigo"
+                    name="gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -88,7 +88,7 @@ export function CriarParabolica() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.marca"
+                    name="gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -104,7 +104,7 @@ export function CriarParabolica() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.modelo"
+                    name="gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea

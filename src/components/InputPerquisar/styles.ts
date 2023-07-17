@@ -24,7 +24,6 @@ export const Input = styled.input`
     border-width: 0px;
     padding-left: 10px;
     border-radius: 4px;
-
     &::placeholder {
       font-size: 0.875rem;
       font-size: 'Lato',sans-serif;

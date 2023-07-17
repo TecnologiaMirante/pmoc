@@ -32,7 +32,7 @@ export function CriarSwitch() {
     formState: { errors },
   } = useForm<SwitchDTO>({
     defaultValues: {
-      category: "Telemetria",
+      category: "TELEMETRIA",
     },
   });
 
@@ -59,7 +59,7 @@ export function CriarSwitch() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.codigo"
+                    name="gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -90,7 +90,7 @@ export function CriarSwitch() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.marca"
+                    name="gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -106,7 +106,7 @@ export function CriarSwitch() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.modelo"
+                    name="gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea

@@ -1,12 +1,14 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home";
 
 
 
-export function Routes() {
+export function Rotas() {
     return (
         <BrowserRouter>
-            <Route component={Home} path="/" exact />
+        <Routes>
+            <Route path="/" element={<Home />}/>
+        </Routes>
         </BrowserRouter>
     );
 }

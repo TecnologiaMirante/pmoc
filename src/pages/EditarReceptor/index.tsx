@@ -40,7 +40,7 @@ export function EditarReceptor() {
     try {
       const res = await api.get("receptor/1");
       reset({
-        dados_gerais: {
+        gerais: {
           codigo: res.data.dados_gerais.codigo,
           marca: res.data.dados_gerais.marca,
           modelo: res.data.dados_gerais.modelo,
@@ -89,7 +89,7 @@ export function EditarReceptor() {
                   <Subtitle>Código</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.codigo"
+                    name="gerais.codigo"
                     rules={{ required: "Informe o código" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -120,7 +120,7 @@ export function EditarReceptor() {
                   <Subtitle>Marca</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.marca"
+                    name="gerais.marca"
                     rules={{ required: "Informe a marca" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea
@@ -136,7 +136,7 @@ export function EditarReceptor() {
                   <Subtitle>Modelo</Subtitle>
                   <Controller
                     control={control}
-                    name="dados_gerais.modelo"
+                    name="gerais.modelo"
                     rules={{ required: "Informe o modelo" }}
                     render={({ field: { onChange, value } }) => (
                       <InputArea

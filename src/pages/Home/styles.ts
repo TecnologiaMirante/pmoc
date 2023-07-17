@@ -42,6 +42,7 @@ export const TitleInfo = styled.div`
   font-family: "Lato", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 export const ContainerAnexos = styled.div`
@@ -133,4 +134,39 @@ export const InfoDocs = styled.div`
   align-items: center;
   gap: 0.25rem;
   align-items: stretch;
+`;
+
+export const FabContainer = styled.div`
+width: 8rem;
+height: 3.4375rem;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+`;
+
+export const Fab = styled.button`
+width: 3.4375rem;
+height: 3.4375rem;
+border-radius: 50px;
+border-width: 0px;
+align-items: center;
+justify-content: center;
+background: linear-gradient(to right, ${props => props.theme['gradient-blue-200']} 0%,  ${props => props.theme['gradient-blue-100']} 100%);
+`;
+
+export const TitleFab = styled.p`
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+color: ${(props) => props.theme["text-color"]};
+text-shadow: 0px 5px 40px -5px rgba(58, 157, 249, 0.10);
+`;
+
+export const Add = styled.h2`
+  color: ${(props) => props.theme["white"]};
+  font-family: "Lato", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
 `;
