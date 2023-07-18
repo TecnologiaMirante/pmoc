@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import {
   Box,
@@ -14,6 +15,12 @@ import {
 } from "./styles";
 
 export function CriarAtivo() {
+  const navigate = useNavigate();
+
+  const handleNavigate = (route: string) => {
+    navigate(route);
+  };
+
   return (
     <div>
       <Header />
@@ -24,15 +31,15 @@ export function CriarAtivo() {
             <ContainerEletrica>
               <Title>Elétrica</Title>
               <ContainerDasEscolhas>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarDisjuntor")}>
                   <SubTitle>Disjuntor</SubTitle>
                 </Box>
 
-                <Box>
+                <Box onClick={() => handleNavigate("/criarDPS")}>
                   <SubTitle>DPS</SubTitle>
                 </Box>
 
-                <Box>
+                <Box onClick={() => handleNavigate("/criarNobreak")}>
                   <SubTitle>Nobreak</SubTitle>
                 </Box>
               </ContainerDasEscolhas>
@@ -41,12 +48,12 @@ export function CriarAtivo() {
             <ContainerRefrigeracao>
               <Title>Refrigeração</Title>
               <ContainerDasEscolhas>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarArcondicionado")}>
                   <SubTitle>Arcondicionado</SubTitle>
                 </Box>
 
-                <Box>
-                  <SubTitle>Exasutor</SubTitle>
+                <Box onClick={() => handleNavigate("/criarExaustor")}>
+                  <SubTitle>Exaustor</SubTitle>
                 </Box>
               </ContainerDasEscolhas>
             </ContainerRefrigeracao>
@@ -55,26 +62,26 @@ export function CriarAtivo() {
               <Title>Irradiação</Title>
 
               <ContainerDasEscolhasIrradiacao>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarAntena")}>
                   <SubTitle>Antena</SubTitle>
                 </Box>
 
-                <Box>
+                <Box onClick={() => handleNavigate("/criarCabo")}>
                   <SubTitle>Cabo</SubTitle>
                 </Box>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarCombinador")}>
                   <SubTitle>Combinador</SubTitle>
                 </Box>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarParabolica")}>
                   <SubTitle>Parabólica</SubTitle>
                 </Box>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarReceptor")}>
                   <SubTitle>Receptor</SubTitle>
                 </Box>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarTorre")}>
                   <SubTitle>Torre</SubTitle>
                 </Box>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarTransmissor")}>
                   <SubTitle>Transmissor</SubTitle>
                 </Box>
               </ContainerDasEscolhasIrradiacao>
@@ -83,11 +90,11 @@ export function CriarAtivo() {
             <ContainerRefrigeracao>
               <Title>Telemetria</Title>
               <ContainerDasEscolhas>
-                <Box>
+                <Box onClick={() => handleNavigate("/criarTelemetria")}>
                   <SubTitle>Telemetria</SubTitle>
                 </Box>
 
-                <Box>
+                <Box onClick={() => handleNavigate("/criarSwitch")}>
                   <SubTitle>Switch</SubTitle>
                 </Box>
               </ContainerDasEscolhas>

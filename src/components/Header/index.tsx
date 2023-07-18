@@ -9,11 +9,11 @@ export function Header() {
       <HeaderContent>
         <Logo src={logo} alt="logomarca"/>
         <ListItems>
-          <li><a href="#">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#">Monitor</a></li>
           <li><a href="#">Manutenções</a></li>
-          <li><a href="#">Documentos</a></li>
-          <li><a href="#">Estações</a></li>
+          <li><a href="/documentos">Documentos</a></li>
+          <li><a href="/estacoes">Estações</a></li>
           <li><a href="#">Gestão</a></li>
         </ListItems>
         <ListItems>

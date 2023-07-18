@@ -61,6 +61,7 @@ export const Box = styled.button`
   align-items: flex-start;
   border-radius: 0.5rem;
   background-color: ${(props) => props.theme["box"]};
+  cursor: pointer;
 `;
 
 export const SubTitle = styled.p`

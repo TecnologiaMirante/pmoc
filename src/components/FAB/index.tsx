@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { FabContainer, FabButton, FabAction, Tooltip } from "./styles";
+import { FcEngineering } from "react-icons/fc";
+import { PiWarehouseBold } from "react-icons/pi";
+import { BsFillGearFill } from "react-icons/bs";
 
 interface Action {
-    label: string;
-    icon: React.ReactNode;
-    onClick: () => void;
-  }
-  
-  interface FABProps {
-    actions: Action[];
-  }
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+}
 
-export function FAB ({ actions }: FABProps) {
-    const [open, setOpen] = useState(false);
+interface FABProps {
+  actions: Action[];
+}
 
-    const toggleOptions = () => {
-      setOpen(!open);
-    };
+export function FAB() {
+  const [open, setOpen] = useState(false);
+
+  const toggleOptions = () => {
+    setOpen(!open);
+  };
 
   return (
     <FabContainer>
@@ -41,4 +44,28 @@ export function FAB ({ actions }: FABProps) {
     </FabContainer>
   );
 }
+
+const actions: Action[] = [
+  {
+    label: "Estação",
+    icon: <FcEngineering />,
+    onClick: () => {
+      window.location.href = "/estacao"
+    },
+  },
+  {
+    label: "Equipamento",
+    icon: <PiWarehouseBold />,
+    onClick: () => {
+      window.location.href = "/criarAtivo"
+    },
+  },
+  {
+    label: "Manutenção",
+    icon: <BsFillGearFill />,
+    onClick: () => {
+     console.log('aaaa')
+    },
+  },
+];
 
