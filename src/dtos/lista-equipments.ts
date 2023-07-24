@@ -6,13 +6,15 @@ export type DPSDTO = {
     "corrente_maxima": number;
     "classe": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type DisjuntorDTO = {
     "gerais":DadosGerais;
-    "status": string;
-    "corrente_maxima": number;
-    "category": string;
+    "status":string;
+    "corrente_maxima":number;
+    "category":string;
+    "tipoEquipamentoId":number;
 }
 
 export type AntenaDTO = {
@@ -24,6 +26,7 @@ export type AntenaDTO = {
     "vr": string;
     "posicao_torre": number;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type ArCondionadoDTO = {
@@ -32,6 +35,7 @@ export type ArCondionadoDTO = {
     "potencia": number;
     "tensao": number;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type CaboDTO = {
@@ -40,18 +44,21 @@ export type CaboDTO = {
     "tipo": string;
     "tamanho": number;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type CombinadoDTO = {
     "gerais":DadosGerais;
     "status": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type ExaustorDTO = {
     "gerais":DadosGerais;
     "status": string;
-    "category": string
+    "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type NobreakDTO = {
@@ -60,6 +67,7 @@ export type NobreakDTO = {
     "tensao_entrada": number;
     "tensao_saida": number;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type ParabolicaDTO = {
@@ -69,6 +77,7 @@ export type ParabolicaDTO = {
     "satelite": string;
     "receptor": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type ReceptorDTO = {
@@ -80,6 +89,7 @@ export type ReceptorDTO = {
     "transmissor": string;
     "parabolica": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type SwitchDTO = {
@@ -87,12 +97,14 @@ export type SwitchDTO = {
     "status": string;
     "quantidade_portas": number;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type TelemetriaDTO = {
     "gerais":DadosGerais;
     "status": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type TorreDTO = {
@@ -102,6 +114,7 @@ export type TorreDTO = {
     "altura": number;
     "aterramento": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }
 
 export type TransmissorDTO = {
@@ -113,4 +126,5 @@ export type TransmissorDTO = {
     "receptor": string;
     "antena": string;
     "category": string;
+    "tipoEquipamentoId":number;
 }

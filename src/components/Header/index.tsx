@@ -3,13 +3,17 @@ import { Question, BellSimple, User } from "phosphor-react";
 import logo from '../../assets/Logo.png'
 
 
+
 export function Header() {
+
+
+
   return (
     <HeaderContainer>
       <HeaderContent>
         <Logo src={logo} alt="logomarca"/>
         <ListItems>
-          <li><a href="/">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="#">Monitor</a></li>
           <li><a href="#">Manutenções</a></li>
           <li><a href="/documentos">Documentos</a></li>

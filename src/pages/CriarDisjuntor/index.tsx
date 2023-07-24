@@ -21,8 +21,14 @@ import { EquipmentsStatusList } from "../../dtos/EquipamentoStatusDTO";
 import { InputArea } from "../../components/Input";
 import { DisjuntorDTO } from "../../dtos/lista-equipments";
 import api from "../../api/api";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export function CriarDisjuntor() {
+  const { token } = useContext(AuthContext);
+  
+  console.log(token);
+
   const {
     control,
     handleSubmit,
@@ -33,15 +39,46 @@ export function CriarDisjuntor() {
     },
   });
 
+
   const onSubmit = async (data: DisjuntorDTO) => {
-    console.log(data);
-    try {
-      const res = await api.post("/disjuntor", data);
-      console.log("deu certo", res);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    try {  
+      const res = await api.post(`/disjuntores`, {
+        gerais:{
+          codigo: data.gerais.codigo,
+          marca: data.gerais.marca,
+          modelo: data.gerais.modelo
+        },
+        status: data.status,
+        corrente_maxima:data.corrente_maxima,
+        category: data.category,
+        tipoEquipamentoId:1
+        
+      }, { headers });
+      console.log("deu certo", res.data);
     } catch (error) {
-      console.log(error);
+      console.log("Deu erro ao fazer post", error);
     }
   };
+
+  const getTeste = async() => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    try {
+      const res = await api.get(`/disjuntores`, {
+        headers
+      })
+      console.log(res.data)
+    } catch (error) {
+      console.log('error ao fazer get', error)
+    }
+  }
+
+  getTeste()
+  
 
   return (
     <div>

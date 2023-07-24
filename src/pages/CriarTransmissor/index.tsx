@@ -33,6 +33,8 @@ export function CriarTransmissor() {
     },
   });
 
+  
+
   const onSubmit = async (data: TransmissorDTO) => {
     console.log(data);
     try {
@@ -116,7 +118,7 @@ export function CriarTransmissor() {
                   />
                 </Form>
                 <Form>
-                  <Subtitle>Programmed power</Subtitle>
+                  <Subtitle>Potên. progamada</Subtitle>
                   <Controller
                     control={control}
                     name="programmed_power"

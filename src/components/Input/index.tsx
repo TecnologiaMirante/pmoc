@@ -6,9 +6,10 @@ type Props = {
   placeholder: string;
   value: string | number;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  style?: React.CSSProperties;
 };
 
-export function InputArea({ type, placeholder, value, onChange }: Props) {
+export function InputArea({ type, placeholder, value, onChange, style}: Props) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(event);
@@ -21,6 +22,7 @@ export function InputArea({ type, placeholder, value, onChange }: Props) {
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
+      style={style}
     />
   );
 }

@@ -102,22 +102,6 @@ export function CriarTorre() {
                   />
                 </Form>
                 <Form>
-                  <Subtitle>Categoria</Subtitle>
-                  <Controller
-                    control={control}
-                    name="category"
-                    rules={{ required: "Informe a categoria" }}
-                    render={({ field: { onChange, value } }) => (
-                      <InputArea
-                        type="text"
-                        placeholder="Categoria XX"
-                        value={value}
-                        onChange={onChange}
-                      />
-                    )}
-                  />
-                </Form>
-                <Form>
                   <Subtitle>Tipo da estrutura</Subtitle>
                   <Controller
                     control={control}

@@ -119,7 +119,7 @@ export function CriarSwitch() {
                   />
                 </Form>
                 <Form>
-                  <Subtitle>Quantidade de portas</Subtitle>
+                  <Subtitle>Quant. de portas</Subtitle>
                   <Controller
                     control={control}
                     name="quantidade_portas"

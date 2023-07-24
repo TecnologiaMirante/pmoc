@@ -1,5 +1,5 @@
 export interface DadosGerais {
-    codigo: string;
-    marca: string;
-    modelo: string;
+    codigo:string;
+    marca:string;
+    modelo:string;
 }
