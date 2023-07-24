@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 type AuthContextData = {
   token: string | null;
@@ -15,10 +15,21 @@ const AuthContext = createContext<AuthContextData>({
 });
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(() => {
+    // Recupera o token do sessionStorage ou retorna null se não estiver presente
+    const storedToken = sessionStorage.getItem("token");
+    return storedToken ? storedToken : null;
+  });
 
   const updateToken = (newToken: string | null) => {
     setToken(newToken);
+
+    // Atualiza o sessionStorage com o novo valor do token
+    if (newToken) {
+      sessionStorage.setItem("token", newToken);
+    } else {
+      sessionStorage.removeItem("token");
+    }
   };
 
   return (

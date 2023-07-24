@@ -26,7 +26,7 @@ import AuthContext from "../../context/AuthContext";
 
 export function CriarDisjuntor() {
   const { token } = useContext(AuthContext);
-  
+
   console.log(token);
 
   const {
@@ -55,7 +55,6 @@ export function CriarDisjuntor() {
         corrente_maxima:data.corrente_maxima,
         category: data.category,
         tipoEquipamentoId:1
-        
       }, { headers });
       console.log("deu certo", res.data);
     } catch (error) {

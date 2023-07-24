@@ -37,6 +37,12 @@ import AuthContext from "../context/AuthContext";
 
 
 function ProtectedRoutes() {
+  const { token } = useContext(AuthContext);
+
+  if (!token) {
+    // Se o token for null, redirecionar para a página de login
+    return <Navigate to="/login" />;
+  }
   return (
     <React.Fragment>
       <Routes>
