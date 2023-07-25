@@ -1,8 +1,8 @@
-import { ContainerDocumentos } from "../../components/ContainerDocumentos";
 import { Header } from "../../components/Header";
 import { CardContent, Center, Container, Content, DocumentCard, Title } from "./styles";
 import { CardFilter } from "../../components/CardFilter";
 import { CardDocumento } from "../../components/CardDocumento";
+import { FAB } from "../../components/FAB";
 
 export function Documentos(){
     return (
@@ -25,6 +25,7 @@ export function Documentos(){
                     </Content>
                     <CardFilter />
                 </Center>
+                <FAB />
             </Container>
         </div>
     );

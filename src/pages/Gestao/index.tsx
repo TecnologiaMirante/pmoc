@@ -9,6 +9,7 @@ import neto from '../../assets/neto.jpeg';
 import joao from '../../assets/joao.jpeg';
 import fy from '../../assets/fy.jpeg';
 import ramon from '../../assets/ramon.jpg';
+import { FAB } from "../../components/FAB";
 
 
 
@@ -96,6 +97,7 @@ export function Gestao () {
                     </Admin>
                 </Card>
             </Center>
+            <FAB />
         </Container>
     )
 }

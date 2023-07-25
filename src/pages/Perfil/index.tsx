@@ -32,7 +32,6 @@ export function Perfil() {
   const handleLogout = () => {
     // Remove o token do sessionStorage
     sessionStorage.removeItem("token");
-
     // Atualiza o token do AuthContext para null
     setToken(null);
   };

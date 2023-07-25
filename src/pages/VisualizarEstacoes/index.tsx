@@ -1,5 +1,6 @@
 import api from "../../api/api";
 import { CardEstacao } from "../../components/CardEstacao";
+import { FAB } from "../../components/FAB";
 import { Header } from "../../components/Header";
 import { InputPesquisar } from "../../components/InputPerquisar";
 import {
@@ -71,6 +72,7 @@ export function VisualizarEstacoes() {
             />
           </FilterPai>
         </Center>
+        <FAB />
       </Container>
     </div>
   );

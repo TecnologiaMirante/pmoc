@@ -1,5 +1,6 @@
 import { CardFilter } from "../../components/CardFilter";
 import { CardManutencao } from "../../components/CardManutencao";
+import { FAB } from "../../components/FAB";
 import { Header } from "../../components/Header";
 import { Center, Container, Content, Filter, Manutencao, PageTitle, Title } from "./styles";
 
@@ -26,6 +27,7 @@ export function Manutencoes() {
                 <CardFilter />
             </Filter>
         </Center>
+        <FAB/>
       </Container>
     </div>
   );
