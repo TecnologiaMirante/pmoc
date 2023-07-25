@@ -15,10 +15,10 @@ export function Header() {
         <ListItems>
           <li><a href="/home">Home</a></li>
           <li><a href="#">Monitor</a></li>
-          <li><a href="#">Manutenções</a></li>
+          <li><a href="/manutencoes">Manutenções</a></li>
           <li><a href="/documentos">Documentos</a></li>
           <li><a href="/estacoes">Estações</a></li>
-          <li><a href="#">Gestão</a></li>
+          <li><a href="/gestao">Gestão</a></li>
         </ListItems>
         <ListItems>
           <a href="#">
@@ -27,7 +27,7 @@ export function Header() {
           <a href="#">
             <BellSimple size={28} />
           </a>
-          <a href="#">
+          <a href="/perfil">
             <UserContainer>
               <User size={28} />
             </UserContainer>

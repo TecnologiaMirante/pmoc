@@ -15,7 +15,6 @@ export const Center = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 1.5rem;
-  align-self: stretch;
 `;
 
 export const Content = styled.div`

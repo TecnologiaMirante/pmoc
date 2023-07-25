@@ -18,8 +18,6 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-
-
 export const ArrowImage = styled.img`
   position: absolute;
   z-index: 1;
@@ -97,6 +95,7 @@ export const ContainerButtons = styled.div`
 `;
 
 export const BntEntrar = styled.button`
+  cursor: pointer;
   display: flex;
   padding: 0.625rem 1.5rem;
   justify-content: center;
@@ -118,6 +117,7 @@ export const TitleEntrar = styled.p`
 `;
 
 export const BntTrocarSenha = styled.button`
+  cursor: pointer;
   display: flex;
   padding: 0.625rem 1.5rem;
   justify-content: center;

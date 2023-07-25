@@ -34,6 +34,10 @@ import { EditarTransmissor } from "../pages/EditarTransmissor";
 import { Documentos } from "../pages/Documentos";
 import { Login } from "../pages/Login";
 import AuthContext from "../context/AuthContext";
+import { CriarEstacao } from "../pages/CriarEstacao";
+import { Manutencoes } from "../pages/Manutencoes";
+import { Gestao } from "../pages/Gestao";
+import { Perfil } from "../pages/Perfil";
 
 
 function ProtectedRoutes() {
@@ -48,6 +52,7 @@ function ProtectedRoutes() {
       <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/estacoes" element={<VisualizarEstacoes />} />
+      <Route path="/criarEstacao" element={<CriarEstacao />} />
       <Route path="/criarAtivo" element={<CriarAtivo />} />
       <Route path="/criarAntena" element={<CriarAntena />} />
       <Route path="/editarAntena" element={<EditarAntena />} />
@@ -84,6 +89,9 @@ function ProtectedRoutes() {
       <Route path="/criarTransmissor" element={<CriarTransmissor />} />
       <Route path="/editarTransmissor" element={<EditarTransmissor />} />
       <Route path="/documentos" element={<Documentos />} />
+      <Route path="/manutencoes" element={<Manutencoes />} />
+      <Route path="/gestao" element={<Gestao />} />
+      <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </React.Fragment>
   );

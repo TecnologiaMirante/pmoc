@@ -4,6 +4,7 @@ import { FabContainer, FabButton, FabAction, Tooltip } from "./styles";
 import { FcEngineering } from "react-icons/fc";
 import { PiWarehouseBold } from "react-icons/pi";
 import { BsFillGearFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 interface Action {
   label: string;
@@ -17,6 +18,7 @@ interface FABProps {
 
 export function FAB() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleOptions = () => {
     setOpen(!open);
@@ -50,7 +52,7 @@ const actions: Action[] = [
     label: "Estação",
     icon: <FcEngineering />,
     onClick: () => {
-      window.location.href = "/estacao"
+      window.location.href = "/criarEstacao"
     },
   },
   {
@@ -64,7 +66,7 @@ const actions: Action[] = [
     label: "Manutenção",
     icon: <BsFillGearFill />,
     onClick: () => {
-     console.log('aaaa')
+     console.log('manutenções')
     },
   },
 ];
