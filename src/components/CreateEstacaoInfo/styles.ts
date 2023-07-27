@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const ContainerInfo = styled.div`
-  width: 77.25rem;
+align-self: stretch;
   display: flex;
   padding: 1.5rem 2.25rem 3.75rem 2.25rem;
   flex-direction: row;

@@ -3,6 +3,7 @@ import { CardEstacao } from "../../components/CardEstacao";
 import { FAB } from "../../components/FAB";
 import { Header } from "../../components/Header";
 import { InputPesquisar } from "../../components/InputPerquisar";
+import AuthContext from "../../context/AuthContext";
 import {
   Ativos,
   Center,
@@ -13,19 +14,23 @@ import {
   FilterPai,
   Title,
 } from "./styles";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 export function VisualizarEstacoes() {
   const [pesquisar, setPesquisar] = useState<string>("");
   const [estacoes, setEstacoes] = useState<any[]>([]);
+  const {token} = useContext(AuthContext);
 
   useEffect(() => {
     getEstacoes();
   }, []);
 
   async function getEstacoes() {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     try {
-      const res = await api.get("estacoes");
+      const res = await api.get("/station", {headers});
       setEstacoes(res.data);
       console.log(res.data);
     } catch (error) {

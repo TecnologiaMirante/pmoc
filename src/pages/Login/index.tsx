@@ -20,7 +20,7 @@ import {
 } from "./styles";
 import Logo from "../../assets/LogoPP.png";
 import { InputArea } from "../../components/Input";
-import { useForm, Controller } from "react-hook-form"; // Remove FormState import
+import { useForm, Controller } from "react-hook-form";
 import api from "../../api/api";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -37,9 +37,9 @@ export function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<Login>({});
-  const [isSubmitting, setIsSubmitting] = useState(false); // Add state to track form submission
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { setToken } = useContext(AuthContext); // Access the AuthContext
+  const { setToken } = useContext(AuthContext); // Acesso o AuthContext
 
   const onSubmit = async (data: Login) => {
     setIsSubmitting(true); // Set the form to submitting state

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled, css } from "styled-components";
 
 export const Title = styled.h2`
   color: ${(props) => props.theme["text-color"]};
@@ -8,8 +8,12 @@ export const Title = styled.h2`
 `;
 
 export const ContainerAtivos = styled.div`
+align-self: stretch;
   display: flex;
-  width: 77.25rem;
+  height: 22rem;
+  min-width: 51.25rem;
+  max-width: 77.25rem;
+  max-height: 25rem;
   padding: 1.5rem 2.25rem;
   flex-direction: column;
   align-items: center;
@@ -63,6 +67,7 @@ export const MiniCard = styled.div`
   border-radius: 0.25rem;
   background-color: ${(props) => props.theme["box"]};
   box-shadow: 0px 4px 4px 0px rgba(30, 30, 30, 0.05);
+
 `;
 
 export const Card = styled.div`
@@ -87,6 +92,7 @@ export const CardAdicionar = styled.button`
   border-radius: 0.25rem;
   background-color: ${(props) => props.theme["cardAdd"]};
   box-shadow: 0px 4px 4px 0px rgba(30, 30, 30, 0.05);
+
 `;
 
 export const TitleAdicionar = styled.p`
