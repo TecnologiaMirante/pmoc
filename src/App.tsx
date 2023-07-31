@@ -4,7 +4,6 @@ import { GlobalStyle } from "./styles/global";
 import { IconContext } from "react-icons";
 import AuthContext, { AuthProvider } from "./context/AuthContext";
 import { AppRoutes } from "./routes/app.routes";
-import { useContext } from "react";
 
 export function App() {
 

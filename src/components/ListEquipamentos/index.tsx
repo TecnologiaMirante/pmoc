@@ -33,24 +33,23 @@ export function ListEquipamentos({
 
   const [searchValue, setSearchValue] = useState("");
   const [showInput, setShowInput] = useState(false);
-  const [selectedEletricaAsset, setSelectedEletricaAsset] = useState<
-    any | null
-  >(null);
-  const [filteredEletrica, setFilteredEletrica] = useState<any[]>([]);
+  const [selectedAsset, setSelectedAsset] = useState<Equipment | null>(null); // Step 1: State for selected asset
+  const [filteredEletrica, setFilteredEletrica] = useState<Equipment[]>([]);
   const [isAssetSelected, setIsAssetSelected] = useState(false);
+  const [selectedAssets, setSelectedAssets] = useState<Equipment[]>([]);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleMiniCardClick = (equipment: any) => {
-    setSelectedEletricaAsset(equipment);
-    setShowInput(true);
+  const handleMiniCardClick = (equipment: Equipment) => {
+    setSelectedAssets((prevSelectedAssets) => [...prevSelectedAssets, equipment]);
+    setShowInput(false); // Close the input field
     setIsAssetSelected(true);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value.toLowerCase();
     setSearchValue(searchTerm);
-    const filteredEquipments = eletrica?.filter((equipment) =>
+    const filteredEquipments = eletrica?.filter((equipment: Equipment) =>
       equipment.gerais.codigo.toLowerCase().includes(searchTerm)
     );
     setFilteredEletrica(filteredEquipments);
@@ -60,24 +59,14 @@ export function ListEquipamentos({
     setTimeout(() => {
       if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
         setShowInput(false);
-        if (selectedEletricaAsset) {
+        if (selectedAsset) {
           setIsAssetSelected(false);
         }
       }
     }, 0);
   };
 
-  useEffect(() => {
-    if (showInput) {
-      document.addEventListener("mousedown", handleInputBlur);
-    } else {
-      document.removeEventListener("mousedown", handleInputBlur);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleInputBlur);
-    };
-  }, [showInput]);
-
+  console.log(eletrica)
 
   return (
     <ContainerAtivos>
@@ -87,20 +76,41 @@ export function ListEquipamentos({
           <Frame190>
             <Title>Elétrica</Title>
             <List>
-              <MiniCard>
-                <Card>
-                  <TextCodigo>Cod</TextCodigo>
+              {filteredEletrica.map((equipment) => (
+                <MiniCard key={equipment.id} onClick={() => handleMiniCardClick(equipment)}>
+                  <Card>
+                  <TextCodigo>{equipment.gerais.codigo}</TextCodigo>
+                  <Title>Equipamento</Title>
+                </Card>
+                </MiniCard>
+              ))}
+              <CardAdicionar onClick={() => setShowInput(true)}>
+                <GrAddCircle />
+              </CardAdicionar>
+            </List>
+            {showInput && ( // Step 3: Conditionally render the input field
+              <input
+                ref={inputRef}
+                type="text"
+                value={searchValue}
+                onChange={handleSearch}
+              />
+            )}
+            {selectedAssets.length > 0 && ( // Step 1: Conditionally render the selected assets
+              <div>
+                {selectedAssets.map((asset) => (
+                  <MiniCard key={asset.id}>
+                  <Card>
+                  <TextCodigo>{asset.gerais.codigo}</TextCodigo>
                   <Title>Equipamento</Title>
                   <IoIosRemoveCircleOutline
                     onClick={() => setModalOpen(true)}
                   />
                 </Card>
-              </MiniCard>
-
-              <CardAdicionar onClick={() => console.log("clicou")}>
-                <GrAddCircle />
-              </CardAdicionar>
-            </List>
+                  </MiniCard>
+                ))}
+              </div>
+            )}
           </Frame190>
           <Line />
         </Frame142>
