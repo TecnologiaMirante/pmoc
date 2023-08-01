@@ -10,10 +10,13 @@ import {
   List,
   TextCodigo,
   Title,
+  ContainerInput,
+  Pesquisa,
 } from "./styles";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { GrAddCircle } from "react-icons/gr";
-import { useEffect, useRef, useState } from 'react';
+import { AiOutlineSearch } from "react-icons/ai";
+import { useRef, useState } from "react";
 
 type Props = {
   setModalOpen: (isOpen: boolean) => void;
@@ -30,7 +33,6 @@ export function ListEquipamentos({
   refrigeracao,
   telemetria,
 }: Props) {
-
   const [searchValue, setSearchValue] = useState("");
   const [showInput, setShowInput] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Equipment | null>(null); // Step 1: State for selected asset
@@ -41,7 +43,10 @@ export function ListEquipamentos({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleMiniCardClick = (equipment: Equipment) => {
-    setSelectedAssets((prevSelectedAssets) => [...prevSelectedAssets, equipment]);
+    setSelectedAssets((prevSelectedAssets) => [
+      ...prevSelectedAssets,
+      equipment,
+    ]);
     setShowInput(false); // Close the input field
     setIsAssetSelected(true);
   };
@@ -57,7 +62,10 @@ export function ListEquipamentos({
 
   const handleInputBlur = (event: MouseEvent) => {
     setTimeout(() => {
-      if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
         setShowInput(false);
         if (selectedAsset) {
           setIsAssetSelected(false);
@@ -65,8 +73,6 @@ export function ListEquipamentos({
       }
     }, 0);
   };
-
-  console.log(eletrica)
 
   return (
     <ContainerAtivos>
@@ -76,37 +82,50 @@ export function ListEquipamentos({
           <Frame190>
             <Title>Elétrica</Title>
             <List>
-              {filteredEletrica.map((equipment) => (
-                <MiniCard key={equipment.id} onClick={() => handleMiniCardClick(equipment)}>
-                  <Card>
-                  <TextCodigo>{equipment.gerais.codigo}</TextCodigo>
-                  <Title>Equipamento</Title>
-                </Card>
-                </MiniCard>
-              ))}
-              <CardAdicionar onClick={() => setShowInput(true)}>
-                <GrAddCircle />
-              </CardAdicionar>
+              {/* Equipamentos selecionados */}
+              {selectedAssets.length > 0 && (
+                <List>
+                  {selectedAssets.map((asset) => (
+                    <MiniCard key={asset.id}>
+                      <Card>
+                        <TextCodigo>{asset.gerais.codigo}</TextCodigo>
+                        <Title>Equipamento</Title>
+                        <IoIosRemoveCircleOutline
+                          onClick={() => setModalOpen(true)}
+                        />
+                      </Card>
+                    </MiniCard>
+                  ))}
+                </List>
+              )}
+
+              {!showInput && (
+                <CardAdicionar onClick={() => setShowInput(true)}>
+                  <GrAddCircle />
+                </CardAdicionar>
+              )}
             </List>
-            {showInput && ( // Step 3: Conditionally render the input field
-              <input
-                ref={inputRef}
-                type="text"
-                value={searchValue}
-                onChange={handleSearch}
-              />
-            )}
-            {selectedAssets.length > 0 && ( // Step 1: Conditionally render the selected assets
+            {showInput && (
               <div>
-                {selectedAssets.map((asset) => (
-                  <MiniCard key={asset.id}>
-                  <Card>
-                  <TextCodigo>{asset.gerais.codigo}</TextCodigo>
-                  <Title>Equipamento</Title>
-                  <IoIosRemoveCircleOutline
-                    onClick={() => setModalOpen(true)}
+                <ContainerInput>
+                  <AiOutlineSearch />
+                  <Pesquisa
+                    placeholder="Pesquisar"
+                    ref={inputRef}
+                    type="text"
+                    value={searchValue}
+                    onChange={handleSearch}
                   />
-                </Card>
+                </ContainerInput>
+                {filteredEletrica.map((equipment) => (
+                  <MiniCard
+                    key={equipment.id}
+                    onClick={() => handleMiniCardClick(equipment)}
+                  >
+                    <Card>
+                      <TextCodigo>{equipment.gerais.codigo}</TextCodigo>
+                      <Title>Equipamento</Title>
+                    </Card>
                   </MiniCard>
                 ))}
               </div>
@@ -114,6 +133,7 @@ export function ListEquipamentos({
           </Frame190>
           <Line />
         </Frame142>
+
         {/* Refrigeração */}
         <Frame142>
           <Frame190>

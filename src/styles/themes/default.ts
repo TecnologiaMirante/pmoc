@@ -13,7 +13,7 @@ export const defalutTheme = {
   'slate-500': '#64748B',
   'slate-400': '#64748B',
   'orange-500': '#F97316',
-
+  'green-500': '#10B881',
   'gray-50': '#A5A5A5',
   'gray-100': '#E1E1E6',
   'gray-300': '#C4C4CC',
@@ -27,6 +27,7 @@ export const defalutTheme = {
   'black': '#020617',
 
   'red-500': '#bf1650',
+  'red-100': '#FFF0F3',
 
   'gradient-blue-100': '#003C78',
 

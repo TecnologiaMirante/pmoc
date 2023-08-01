@@ -1,4 +1,5 @@
 import { styled, keyframes } from "styled-components";
+import { BiSolidErrorCircle } from "react-icons/bi";
 
 const arrowAnimation = keyframes`
   from {
@@ -26,7 +27,7 @@ export const ArrowImage = styled.img`
 
 export const Frame201 = styled.div`
   width: 21.3125rem;
-  height: 29.375rem;
+  height: 32.375rem;
   z-index: 999999;
   display: inline-flex;
   padding: 2.25rem 1.5rem 1.5rem 2.25rem;
@@ -45,6 +46,24 @@ export const Frame187 = styled.div`
   gap: 0.1875rem;
 `;
 
+export const ContainerError = styled.div`
+  display: flex; /* Add flex display */
+  align-items: center; /* Vertically center the icon and text */
+  width: 17.5rem;
+  height: 2rem;
+  gap:1rem;
+  border-radius: 0.2rem;
+  border-width: thin;
+`;
+
+export const TitleError = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${(props) => props.theme["red-500"]};
+  font-family: "Lato", sans-serif;
+`;
+
 export const Title = styled.h2`
   font-size: 1rem;
   font-style: normal;
@@ -53,6 +72,11 @@ export const Title = styled.h2`
   text-align: right;
   color: ${(props) => props.theme["black"]};
   font-family: "Lato", sans-serif;
+`;
+
+export const Icon = styled(BiSolidErrorCircle)`
+  margin-left:1rem;
+  color: red;
 `;
 
 export const Image = styled.img``;

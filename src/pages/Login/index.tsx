@@ -6,15 +6,18 @@ import {
   Container,
   ContainerButtons,
   ContainerBy,
+  ContainerError,
   Content,
   Frame187,
   Frame201,
+  Icon,
   Image,
   Input,
   Title,
   TitleBy,
   TitleEmpresa,
   TitleEntrar,
+  TitleError,
   TitleForms,
   TitleTrocarSenha,
 } from "./styles";
@@ -24,6 +27,7 @@ import { useForm, Controller } from "react-hook-form";
 import api from "../../api/api";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 type Login = {
   username: string;
@@ -38,12 +42,14 @@ export function Login() {
     formState: { errors },
   } = useForm<Login>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loginError, setloginError] = useState(false);
 
   const { setToken } = useContext(AuthContext); // Acesso o AuthContext
 
+
+
   const onSubmit = async (data: Login) => {
     setIsSubmitting(true); // Set the form to submitting state
-
     try {
       const res = await api.post("/login", data);
       const token = res.data["token"];
@@ -53,6 +59,7 @@ export function Login() {
       // Redirecionar para a rota /home após o login
       navigate("/home");
     } catch (error) {
+      setloginError(true);
       console.log("error ao fazer login", error);
     } finally {
       setIsSubmitting(false); // Reset the form submission state
@@ -68,64 +75,73 @@ export function Login() {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleFormSubmit}>
-        <Frame201>
-          <Frame187>
-            <Title>Bem-vindo ao</Title>
-            <Image alt="logo" src={Logo} />
-          </Frame187>
-          <Content>
-            <Input>
-              <TitleForms>Login</TitleForms>
-              <Controller
-                control={control}
-                name="username"
-                rules={{ required: "Informe o usuário" }}
-                render={({ field: { onChange, value } }) => (
-                  <InputArea
-                    type="text"
-                    placeholder="Username"
-                    value={value}
-                    onChange={onChange}
-                    style={{ width: "17.5rem" }}
-                  />
-                )}
-              />
-            </Input>
-            <Input>
-              <TitleForms>Senha</TitleForms>
-              <Controller
-                control={control}
-                name="password"
-                rules={{ required: "Informe a senha" }}
-                render={({ field: { onChange, value } }) => (
-                  <InputArea
-                    type="password"
-                    placeholder="Senha"
-                    value={value}
-                    onChange={onChange}
-                    style={{ width: "17.5rem" }}
-                  />
-                )}
-              />
-            </Input>
-            <ContainerButtons>
-              <BntEntrar type="submit" onClick={handleSubmit(onSubmit)}>
-                {/* Disable the button while submitting */}
-                <TitleEntrar>Entrar</TitleEntrar>
-              </BntEntrar>
-              <BntTrocarSenha>
-                <TitleTrocarSenha>Esqueci minha senha</TitleTrocarSenha>
-              </BntTrocarSenha>
-            </ContainerButtons>
-          </Content>
-          <ContainerBy>
-            <TitleBy>By</TitleBy>
-            <TitleEmpresa>MiraTec</TitleEmpresa>
-          </ContainerBy>
-        </Frame201>
-      </form>
-    </Container>
+    <div>
+      <Container>
+        <form onSubmit={handleFormSubmit}>
+          <Frame201>
+            <Frame187>
+              <Title>Bem-vindo ao</Title>
+              <Image alt="logo" src={Logo} />
+            </Frame187>
+            <Content>
+              {
+                loginError && 
+                <ContainerError>
+                    <Icon />
+                    <TitleError>Usuário ou senha incorretos</TitleError>
+                </ContainerError>
+              }
+              <Input>
+                <TitleForms>Usuário</TitleForms>
+                <Controller
+                  control={control}
+                  name="username"
+                  rules={{ required: "Informe o usuário" }}
+                  render={({ field: { onChange, value } }) => (
+                    <InputArea
+                      type="text"
+                      placeholder="Username"
+                      value={value}
+                      onChange={onChange}
+                      style={{ width: "17.5rem" }}
+                    />
+                  )}
+                />
+              </Input>
+              <Input>
+                <TitleForms>Senha</TitleForms>
+                <Controller
+                  control={control}
+                  name="password"
+                  rules={{ required: "Informe a senha" }}
+                  render={({ field: { onChange, value } }) => (
+                    <InputArea
+                      type="password"
+                      placeholder="Senha"
+                      value={value}
+                      onChange={onChange}
+                      style={{ width: "17.5rem" }}
+                    />
+                  )}
+                />
+              </Input>
+              <ContainerButtons>
+                <BntEntrar type="submit" onClick={handleSubmit(onSubmit)}>
+                  <TitleEntrar>Entrar</TitleEntrar>
+                </BntEntrar>
+                <BntTrocarSenha>
+                  <TitleTrocarSenha>Esqueci minha senha</TitleTrocarSenha>
+                </BntTrocarSenha>
+              </ContainerButtons>
+            </Content>
+            <ContainerBy>
+              <TitleBy>By</TitleBy>
+              <TitleEmpresa>MiraTec</TitleEmpresa>
+            </ContainerBy>
+          </Frame201>
+        </form>
+      </Container>
+      <ToastContainer />
+    </div>
   );
 }

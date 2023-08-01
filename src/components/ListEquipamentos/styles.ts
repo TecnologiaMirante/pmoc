@@ -1,4 +1,4 @@
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 
 export const Title = styled.h2`
   color: ${(props) => props.theme["text-color"]};
@@ -8,7 +8,7 @@ export const Title = styled.h2`
 `;
 
 export const ContainerAtivos = styled.div`
-align-self: stretch;
+  align-self: stretch;
   display: flex;
   height: 22rem;
   min-width: 51.25rem;
@@ -67,7 +67,6 @@ export const MiniCard = styled.div`
   border-radius: 0.25rem;
   background-color: ${(props) => props.theme["box"]};
   box-shadow: 0px 4px 4px 0px rgba(30, 30, 30, 0.05);
-
 `;
 
 export const Card = styled.div`
@@ -92,7 +91,6 @@ export const CardAdicionar = styled.button`
   border-radius: 0.25rem;
   background-color: ${(props) => props.theme["cardAdd"]};
   box-shadow: 0px 4px 4px 0px rgba(30, 30, 30, 0.05);
-
 `;
 
 export const TitleAdicionar = styled.p`
@@ -110,9 +108,26 @@ export const TextCodigo = styled.p`
 `;
 
 export const Excluir = styled.p`
-  color: ${(props) => props.theme["slate-700"]};
   font-family: "Lato", sans-serif;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  color: ${(props) => props.theme["slate-700"]};
+`;
+
+export const ContainerInput = styled.div`
+  display: flex;
+  min-width: 16.25rem;
+  padding: 0.6875rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.375rem;
+  align-self: stretch;
+  border-radius: 0.25rem;
+  background-color: ${(props) => props.theme["slate-100"]};
+  box-shadow: 0px 4px 4px 0px rgba(30, 30, 30, 0.05);
+`;
+
+export const Pesquisa = styled.input`
+  border-width: 0px;
 `;
